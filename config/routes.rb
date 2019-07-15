@@ -9,4 +9,7 @@ Rails.application.routes.draw do
   get 'logout', to: 'sessions#destroy', as: 'logout'
 
   resources :welcome, only: [:index]
+  resources :meals do
+    get 'category', on: :collection
+  end
 end

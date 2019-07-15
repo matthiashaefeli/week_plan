@@ -1,0 +1,25 @@
+<h2>Meals</h2>
+<% @categories.each do |c| %>
+  <div class="categories">
+    <p><%= link_to c['strCategory'], nil, class: 'category_link' %></p>
+    <p><%= c['strCategoryDescription'] %></p>
+    <%= image_tag(c['strCategoryThumb'], alt: c['strCategory']) %>
+    <div class="meals"></div>
+  </div>
+<% end %>
+<script>
+  $('.category_link').on('click', function(event) {
+    event.preventDefault();
+    let category = $(this).text();
+    let div = $(this).parent().parent().find('.meals')
+
+    $.ajax({
+      url: 'meals/category',
+      method: 'get',
+      data: { category },
+      success: function(response) {
+        div.append(response)
+      }
+    })
+  })
+</script>
