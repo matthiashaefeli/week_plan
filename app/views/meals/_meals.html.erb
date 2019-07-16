@@ -1,19 +1,37 @@
 <% @meals.each do |m| %>
   <div class="meal">
     <input type="hidden" name="id" value="<%= m['idMeal'] %>">
-    <div><%= m['strMeal'] %> <i class="far fa-heart icons"></i><i class="fas fa-heart icons"></i></div>
+    <div>
+      <span><%= m['strMeal'] %></span>
+      <%= link_to '#', onclick: 'like(event, $(this))' do %>
+        <i class="far fa-heart icons" <% if @likes.include?(m['idMeal']) %> style="display:none;" <% end %>></i>
+        <i class="fas fa-heart icons" <% if !@likes.include?(m['idMeal']) %> style="display:none;" <% end %>></i>
+      <% end %>
+      </div>
     <div>
       <%= link_to '#', onclick: 'get_recipe(event, $(this))' do %>
         <%= image_tag(m['strMealThumb'], size: '200x200', alt: m['strMealThumb']) %>
       <% end %>
     </div>
-    <div class="select_meal">Select</div>
   </div>
 <% end %>
 <script>
   $('.select_meal').on('click', function() {
     debugger;
   })
+
+  function like(event, link) {
+    event.preventDefault();
+    let id = link.parent().siblings('input').val();
+    $.ajax({
+      url: 'likes',
+      method: 'post',
+      data: { id },
+      success: function() {
+        link.find('.icons').toggle();
+      }
+    })
+  }
 
   function get_recipe(event, link) {
     event.preventDefault();

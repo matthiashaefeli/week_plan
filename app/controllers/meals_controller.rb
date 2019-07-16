@@ -53,6 +53,7 @@ class MealsController < ApplicationController
   end
 
   def meals
+    @likes = current_user.likes.map { |l| l.meal }
     # url = 'https://www.themealdb.com/api/json/v2/8673533/filter.php?c=' + params[:category]
     # result = Net::HTTP.get(URI.parse(url))
     # meals = JSON.parse(result)
@@ -84,7 +85,7 @@ class MealsController < ApplicationController
     # result = Net::HTTP.get(URI.parse(url))
     # recipe = JSON.parse(result)
     # @recipe = recipe['meals'][0]
-    @recipe = [
+    @recipe = 
       {"idMeal"=>"52874",
       "strMeal"=>"Beef and Mustard Pie",
       "strDrinkAlternate"=>nil,
@@ -136,7 +137,7 @@ class MealsController < ApplicationController
       "strMeasure19"=>"",
       "strMeasure20"=>"",
       "strSource"=>"https://www.bbc.co.uk/food/recipes/beef_and_mustard_pie_58002",
-      "dateModified"=>nil}]
+      "dateModified"=>nil}
     render partial: 'recipe'
 
   end

@@ -13,4 +13,5 @@ Rails.application.routes.draw do
     get 'meals', on: :collection
     get 'recipes', on: :collection
   end
+  resources :likes, only: [:create]
 end
