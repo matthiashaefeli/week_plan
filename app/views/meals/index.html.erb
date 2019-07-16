@@ -1,25 +1,36 @@
-<h2>Meals</h2>
-<% @categories.each do |c| %>
-  <div class="categories">
-    <p><%= link_to c['strCategory'], nil, class: 'category_link' %></p>
-    <p><%= c['strCategoryDescription'] %></p>
-    <%= image_tag(c['strCategoryThumb'], alt: c['strCategory']) %>
-    <div class="meals"></div>
+<h1>Meals</h1>
+<div class="category">
+  <% @categories.each do |c| %>
+    <div class="categories">
+      <div class="category_title"><%= link_to c['strCategory'], nil, class: 'category_link' %></div>
+      <div><%= image_tag(c['strCategoryThumb'],size: '150x100', alt: c['strCategory']) %></div>
+      <div class="category_desc"><%= c['strCategoryDescription'] %></div>
+    </div>
+  <% end %>
+  <div id="meals">
+    <%= link_to 'Back', nil , onclick: "$('.categories, #meals').toggle();" %>
+    <h2 id="mealTitle"></h2>
+    <div id="description"></div>
+    <div id="catMeals"></div>
   </div>
-<% end %>
+</div>
+
 <script>
   $('.category_link').on('click', function(event) {
     event.preventDefault();
     let category = $(this).text();
-    let div = $(this).parent().parent().find('.meals')
-
+    let descr = $(this).parents('.category_title').siblings('.category_desc').text();
     $.ajax({
-      url: 'meals/category',
+      url: 'meals/meals',
       method: 'get',
       data: { category },
       success: function(response) {
-        div.append(response)
+        $('#catMeals, #description, #mealTitle').html('');
+        $('#mealTitle').html(category);
+        $('#description').html(descr);
+        $('#catMeals').html(response);
+        $('.categories, #meals').toggle();
       }
     })
-  })
+  });
 </script>

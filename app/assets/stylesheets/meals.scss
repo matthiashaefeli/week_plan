@@ -2,6 +2,47 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.category_link {
-  cursor: pointer;
+.category {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.categories {
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.category_title {
+  text-align: center;
+}
+
+.category_desc {
+  display: none;
+}
+
+#meals {
+  display: none;
+}
+
+#catMeals {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.meal {
+  margin: 10px;
+}
+
+.select_meal {
+  text-align: center;
+  background-color: grey;
+}
+
+.icons {
+  color: blue;
 }

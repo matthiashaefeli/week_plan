@@ -1,5 +1,0 @@
-<% @category.each do |m| %>
- <p><%= m['strMeal'] %></p>
- <input type="hidden" name="id" value="m['idMeal']">
- <%= image_tag(m['strMealThumb'], size: '100x100', alt: m['strMealThumb']) %>
-<% end %>

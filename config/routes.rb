@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   resources :welcome, only: [:index]
   resources :meals do
-    get 'category', on: :collection
+    get 'meals', on: :collection
+    get 'recipes', on: :collection
   end
 end
