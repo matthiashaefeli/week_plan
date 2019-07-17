@@ -17,12 +17,15 @@ ActiveRecord::Schema.define(version: 2019_07_16_211738) do
 
   create_table "likes", force: :cascade do |t|
     t.integer "user_id"
-    t.string "meal"
+    t.integer "meal_id"
+    t.string "meal_string"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "meals", force: :cascade do |t|
+    t.text "recipe"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

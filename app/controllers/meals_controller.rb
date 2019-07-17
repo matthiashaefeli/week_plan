@@ -53,7 +53,7 @@ class MealsController < ApplicationController
   end
 
   def meals
-    @likes = current_user.likes.map { |l| l.meal }
+    @likes = current_user.likes.map { |l| l.meal_string }
     # url = 'https://www.themealdb.com/api/json/v2/8673533/filter.php?c=' + params[:category]
     # result = Net::HTTP.get(URI.parse(url))
     # meals = JSON.parse(result)

@@ -2,3 +2,9 @@
 <h2>Welcome <%= current_user.user_name %></h2>
 <% end %>
 <%= link_to 'Meals', meals_path %>
+<h2>My Favorite Meals</h2>
+<% current_user.meals.each do |m| %>
+  <% meal = JSON.parse(m.recipe) %>
+  <% recipe = meal['meals'][0] %>
+  <%= render 'meals/recipe', recipe: recipe %>
+<% end %>
