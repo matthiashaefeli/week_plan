@@ -14,5 +14,41 @@
  *= require_self
  */
 
- @import "font-awesome-sprockets";
- @import "font-awesome";
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
+body {
+  background-color: #D3EADB;
+}
+
+.home {
+  width: 90vw;
+  height: 100vh;
+  margin: 50px auto auto auto;
+  background-color: #F4F9F6;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #9CD1AE;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  font-size: 22px;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #83B795;
+}

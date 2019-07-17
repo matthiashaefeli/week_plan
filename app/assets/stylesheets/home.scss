@@ -1,3 +1,33 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.bg {
+  margin: auto;
+  background-image: url('menu.jpg');
+  background-attachment: fixed ;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 30vw;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.register {
+  font-size: 22px;
+  color: white;
+  border: 1px solid #D3EADB;
+  width: 20%;
+  height: 10%;
+  padding-top: 1%;
+  text-decoration: none;
+  background-color: #9CD1AE;
+}
+
+.register:hover {
+  background-color: #83B795;
+}

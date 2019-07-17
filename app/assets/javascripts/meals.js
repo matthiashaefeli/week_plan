@@ -1,0 +1,42 @@
+function recipeDetails(button) {
+  button.parent().toggle();
+  button.parent().siblings().toggle()
+};
+
+function selectMenu(button) {
+  let id = button.attr('id').replace('recipe_id', '')
+  $.ajax({
+    url: '/likes/' + id,
+    method: 'put',
+    success: function(response) {
+      let color = response.notice == false ? 'white' : '#A3D144';
+      button.css('background-color', color);
+    }
+  })
+};
+
+function like(event, link) {
+  event.preventDefault();
+  let id = link.parent().siblings('input').val();
+  $.ajax({
+    url: 'likes',
+    method: 'post',
+    data: { id },
+    success: function() {
+      link.find('.icons').toggle();
+    }
+  })
+};
+
+function get_recipe(event, link) {
+  event.preventDefault();
+  let id = link.parent().siblings('input').val();
+  $.ajax({
+    url: 'meals/recipes',
+    method: 'get',
+    data: { id },
+    success: function(response) {
+      link.append(response)
+    }
+  })
+};
