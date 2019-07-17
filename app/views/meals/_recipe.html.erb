@@ -1,3 +1,53 @@
 <% r = @recipe ? @recipe : recipe %>
-<h2><%= r['strMeal'] %></h2>
-<%= image_tag(r['strMealThumb'], size: '200x200', alt: r['strMealThumb']) %>
+<div class="meal">
+  <div><h3><%= r['strMeal'] %></h3></div>
+  <div><%= image_tag(r['strMealThumb'], size: '200x200', alt: r['strMealThumb']) %></div>
+  <div><button id="recipe_id<%= r['idMeal'] %>" onclick="selectMenu(this)">Select</button></div>
+  <div>
+    <div><button onclick="recipeDetails($(this))">Show Recipe Details</button></div>
+    <div style="display:none;"><button onclick="recipeDetails($(this))">Hide Recipe Details</button></div>
+    <div class="recipe_details" <% if !@recipe %> style="display:none" <% end %>>
+      <table>
+        <tr>
+          <td>Category:</td>
+          <td><%= r['strCategory'] %></td>
+        </tr>
+        <tr>
+          <td>Area:</td>
+          <td><%= r['strArea'] %></td>
+        </tr>
+        <tr>
+          <td>Instructions:</td>
+          <td><%= r['strInstructions'] %></td>
+        </tr>
+        <% index = 1 %>
+        <% loop do %>
+          <% i = 'strIngredient' + index.to_s %>
+          <% m = 'strMeasure' + index.to_s %>
+          <% if r[i] == '' %>
+            <% break %>
+          <% end %>
+          <tr>
+            <td><%= r[i]%>:</td>
+            <td><%= r[m] %></td>
+          </tr>
+          <% index += 1%>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>
+<script>
+  function recipeDetails(button) {
+    button.parent().toggle();
+    button.parent().siblings().toggle()
+  }
+
+  function selectMenu(button) {
+    let id = button.id.replace('recipe_id', '')
+    $.ajax({
+      // ajax call to add to week planing function
+      // change button or color of button in success
+    })
+  }
+</script>

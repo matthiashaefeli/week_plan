@@ -3,8 +3,10 @@
 <% end %>
 <%= link_to 'Meals', meals_path %>
 <h2>My Favorite Meals</h2>
-<% current_user.meals.each do |m| %>
-  <% meal = JSON.parse(m.recipe) %>
-  <% recipe = meal['meals'][0] %>
-  <%= render 'meals/recipe', recipe: recipe %>
-<% end %>
+<div id="catMeals">
+  <% current_user.meals.each do |m| %>
+    <% meal = JSON.parse(m.recipe) %>
+    <% recipe = meal['meals'][0] %>
+    <%= render 'meals/recipe', recipe: recipe %>
+  <% end %>
+</div>

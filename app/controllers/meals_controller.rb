@@ -1,10 +1,10 @@
 class MealsController < ApplicationController
   def index
-    # url = 'https://www.themealdb.com/api/json/v2/8673533/categories.php'
-    # result = Net::HTTP.get(URI.parse(url))
-    # categories = JSON.parse(result)
-    # @categories = categories['categories']
-    @categories =[
+    url = 'https://www.themealdb.com/api/json/v2/8673533/categories.php'
+    result = Net::HTTP.get(URI.parse(url))
+    categories = JSON.parse(result)
+    @categories = categories['categories']
+    @test =[
       {"idCategory"=>"1",
       "strCategory"=>"Beef",
       "strCategoryThumb"=>"menu.jpg",
@@ -54,38 +54,38 @@ class MealsController < ApplicationController
 
   def meals
     @likes = current_user.likes.map { |l| l.meal_string }
-    # url = 'https://www.themealdb.com/api/json/v2/8673533/filter.php?c=' + params[:category]
-    # result = Net::HTTP.get(URI.parse(url))
-    # meals = JSON.parse(result)
-    # @meals = meals['meals']
-    @meals =[
-      {"strMeal"=>"Beef and Mustard Pie", "strMealThumb"=>"menu.jpg", "idMeal"=>"52874"},
-     {"strMeal"=>"Beef and Oyster pie", "strMealThumb"=>"menu.jpg", "idMeal"=>"52878"},
-     {"strMeal"=>"Beef Bourguignon", "strMealThumb"=>"menu.jpg", "idMeal"=>"52904"},
-     {"strMeal"=>"Beef Brisket Pot Roast", "strMealThumb"=>"menu.jpg", "idMeal"=>"52812"},
-     {"strMeal"=>"Beef Dumpling Stew", "strMealThumb"=>"menu.jpg", "idMeal"=>"52873"},
-     {"strMeal"=>"Beef Lo Mein", "strMealThumb"=>"menu.jpg", "idMeal"=>"52952"},
-     {"strMeal"=>"Beef stroganoff", "strMealThumb"=>"menu.jpg", "idMeal"=>"52834"},
-     {"strMeal"=>"Beef Sunday Roast", "strMealThumb"=>"menu.jpg", "idMeal"=>"52824"},
-     {"strMeal"=>"Beef Wellington", "strMealThumb"=>"menu.jpg", "idMeal"=>"52803"},
-     {"strMeal"=>"Braised Beef Chilli", "strMealThumb"=>"menu.jpg", "idMeal"=>"52826"},
-     {"strMeal"=>"Irish stew", "strMealThumb"=>"menu.jpg", "idMeal"=>"52781"},
-     {"strMeal"=>"Jamaican Beef Patties", "strMealThumb"=>"menu.jpg", "idMeal"=>"52938"},
-     {"strMeal"=>"Ma Po Tofu", "strMealThumb"=>"menu.jpg", "idMeal"=>"52947"},
-     {"strMeal"=>"Massaman Beef curry", "strMealThumb"=>"menu.jpg", "idMeal"=>"52827"},
-     {"strMeal"=>"Minced Beef Pie", "strMealThumb"=>"menu.jpg", "idMeal"=>"52876"},
-     {"strMeal"=>"Montreal Smoked Meat", "strMealThumb"=>"menu.jpg", "idMeal"=>"52927"},
-     {"strMeal"=>"Oxtail with broad beans", "strMealThumb"=>"menu.jpg", "idMeal"=>"52943"},
-     {"strMeal"=>"Pate Chinois", "strMealThumb"=>"menu.jpg", "idMeal"=>"52930"}]
+    url = 'https://www.themealdb.com/api/json/v2/8673533/filter.php?c=' + params[:category]
+    result = Net::HTTP.get(URI.parse(url))
+    meals = JSON.parse(result)
+    @meals = meals['meals']
+    # @meals =[
+    #   {"strMeal"=>"Beef and Mustard Pie", "strMealThumb"=>"menu.jpg", "idMeal"=>"52874"},
+    #  {"strMeal"=>"Beef and Oyster pie", "strMealThumb"=>"menu.jpg", "idMeal"=>"52878"},
+    #  {"strMeal"=>"Beef Bourguignon", "strMealThumb"=>"menu.jpg", "idMeal"=>"52904"},
+    #  {"strMeal"=>"Beef Brisket Pot Roast", "strMealThumb"=>"menu.jpg", "idMeal"=>"52812"},
+    #  {"strMeal"=>"Beef Dumpling Stew", "strMealThumb"=>"menu.jpg", "idMeal"=>"52873"},
+    #  {"strMeal"=>"Beef Lo Mein", "strMealThumb"=>"menu.jpg", "idMeal"=>"52952"},
+    #  {"strMeal"=>"Beef stroganoff", "strMealThumb"=>"menu.jpg", "idMeal"=>"52834"},
+    #  {"strMeal"=>"Beef Sunday Roast", "strMealThumb"=>"menu.jpg", "idMeal"=>"52824"},
+    #  {"strMeal"=>"Beef Wellington", "strMealThumb"=>"menu.jpg", "idMeal"=>"52803"},
+    #  {"strMeal"=>"Braised Beef Chilli", "strMealThumb"=>"menu.jpg", "idMeal"=>"52826"},
+    #  {"strMeal"=>"Irish stew", "strMealThumb"=>"menu.jpg", "idMeal"=>"52781"},
+    #  {"strMeal"=>"Jamaican Beef Patties", "strMealThumb"=>"menu.jpg", "idMeal"=>"52938"},
+    #  {"strMeal"=>"Ma Po Tofu", "strMealThumb"=>"menu.jpg", "idMeal"=>"52947"},
+    #  {"strMeal"=>"Massaman Beef curry", "strMealThumb"=>"menu.jpg", "idMeal"=>"52827"},
+    #  {"strMeal"=>"Minced Beef Pie", "strMealThumb"=>"menu.jpg", "idMeal"=>"52876"},
+    #  {"strMeal"=>"Montreal Smoked Meat", "strMealThumb"=>"menu.jpg", "idMeal"=>"52927"},
+    #  {"strMeal"=>"Oxtail with broad beans", "strMealThumb"=>"menu.jpg", "idMeal"=>"52943"},
+    #  {"strMeal"=>"Pate Chinois", "strMealThumb"=>"menu.jpg", "idMeal"=>"52930"}]
      render partial: 'meals'
   end
 
   def recipes
-    # url = 'https://www.themealdb.com/api/json/v2/8673533/lookup.php?i=' + params[:id]
-    # result = Net::HTTP.get(URI.parse(url))
-    # recipe = JSON.parse(result)
-    # @recipe = recipe['meals'][0]
-    @recipe = 
+    url = 'https://www.themealdb.com/api/json/v2/8673533/lookup.php?i=' + params[:id]
+    result = Net::HTTP.get(URI.parse(url))
+    recipe = JSON.parse(result)
+    @recipe = recipe['meals'][0]
+    @test = 
       {"idMeal"=>"52874",
       "strMeal"=>"Beef and Mustard Pie",
       "strDrinkAlternate"=>nil,
