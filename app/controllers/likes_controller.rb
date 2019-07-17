@@ -18,4 +18,13 @@ class LikesController < ApplicationController
       format.json { render json: { notice: 'saved' } }
     end
   end
+
+  def update
+    like = Like.find_by(meal_string: params[:id])
+    like.week_plan = like.week_plan == false ? true : false
+    like.save
+    respond_to do |format|
+      format.json { render json: { notice: like.week_plan } }
+    end
+  end
 end

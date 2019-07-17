@@ -2,7 +2,10 @@
 <div class="meal">
   <div><h3><%= r['strMeal'] %></h3></div>
   <div><%= image_tag(r['strMealThumb'], size: '200x200', alt: r['strMealThumb']) %></div>
-  <div><button id="recipe_id<%= r['idMeal'] %>" onclick="selectMenu(this)">Select</button></div>
+  <div id="recipe_id<%= r['idMeal'] %>"
+       class="week_plan_select"
+       onclick="selectMenu($(this))" <% if like && like.week_plan == true %> style="background-color:#A3D144;" <% end %>>Week Plan
+  </div>
   <div>
     <div><button onclick="recipeDetails($(this))">Show Recipe Details</button></div>
     <div style="display:none;"><button onclick="recipeDetails($(this))">Hide Recipe Details</button></div>
@@ -44,10 +47,14 @@
   }
 
   function selectMenu(button) {
-    let id = button.id.replace('recipe_id', '')
+    let id = button.attr('id').replace('recipe_id', '')
     $.ajax({
-      // ajax call to add to week planing function
-      // change button or color of button in success
+      url: '/likes/' + id,
+      method: 'put',
+      success: function(response) {
+        let color = response.notice == false ? 'white' : '#A3D144';
+        button.css('background-color', color);
+      }
     })
   }
 </script>
