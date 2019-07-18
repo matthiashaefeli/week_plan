@@ -30,13 +30,15 @@ function like(event, link) {
 
 function get_recipe(event, link) {
   event.preventDefault();
-  let id = link.parent().siblings('input').val();
+  let id = link.children('input').val();
   $.ajax({
     url: 'meals/recipes',
     method: 'get',
     data: { id },
     success: function(response) {
-      link.append(response)
+      $('.meal_show_recipe').html('')
+      $('.meal_show_recipe_background').toggle();
+      $('.meal_show_recipe').html(response)
     }
   })
 };

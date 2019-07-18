@@ -138,7 +138,6 @@ class MealsController < ApplicationController
       "strMeasure20"=>"",
       "strSource"=>"https://www.bbc.co.uk/food/recipes/beef_and_mustard_pie_58002",
       "dateModified"=>nil}
-    render partial: 'recipe'
-
+    render partial: 'show_recipe'
   end
 end

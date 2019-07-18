@@ -1,0 +1,34 @@
+<div>
+  <p onclick="$('.meal_show_recipe').html('');$('.meal_show_recipe_background').toggle();"><i class="fas fa-window-close"></i>Close</p>
+  <h3><%= @recipe['strMeal'] %></h3>
+  <%= image_tag(@recipe['strMealThumb'], size: '100x100', alt: @recipe['strMealThumb']) %>
+  <div class="recipe_details">
+    <table>
+      <tr>
+        <td>Category:</td>
+        <td><%= @recipe['strCategory'] %></td>
+      </tr>
+      <tr>
+        <td>Area:</td>
+        <td><%= @recipe['strArea'] %></td>
+      </tr>
+      <tr>
+        <td>Instructions:</td>
+        <td><%= @recipe['strInstructions'] %></td>
+      </tr>
+      <% index = 1 %>
+      <% loop do %>
+        <% i = 'strIngredient' + index.to_s %>
+        <% m = 'strMeasure' + index.to_s %>
+        <% if @recipe[i] == '' %>
+          <% break %>
+        <% end %>
+        <tr>
+          <td><%= @recipe[i]%>:</td>
+          <td><%= @recipe[m] %></td>
+        </tr>
+        <% index += 1%>
+      <% end %>
+    </table>
+  </div>
+</div>

@@ -1,14 +1,18 @@
 <% r = @recipe ? @recipe : recipe %>
 <div class="meal">
   <div><h3><%= r['strMeal'] %></h3></div>
-  <div><%= image_tag(r['strMealThumb'], size: '200x200', alt: r['strMealThumb']) %></div>
-  <div id="recipe_id<%= r['idMeal'] %>"
-       class="week_plan_select"
-       onclick="selectMenu($(this))" <% if like && like.week_plan == true %> style="background-color:#A3D144;" <% end %>>Week Plan
-  </div>
+  <div><%= image_tag(r['strMealThumb'], size: '100x100', alt: r['strMealThumb']) %></div>
+  <% if !@recipe %>
+    <div id="recipe_id<%= r['idMeal'] %>"
+        class="week_plan_select"
+        onclick="selectMenu($(this))" <% if like && like.week_plan == true %> style="background-color:#A3D144;" <% end %>>Week Plan
+    </div>
+  <% end %>
   <div>
-    <div><button onclick="recipeDetails($(this))">Show Recipe Details</button></div>
-    <div style="display:none;"><button onclick="recipeDetails($(this))">Hide Recipe Details</button></div>
+    <% if !@recipe %>
+      <div><button onclick="recipeDetails($(this))">Show Recipe Details</button></div>
+      <div style="display:none;"><button onclick="recipeDetails($(this))">Hide Recipe Details</button></div>
+    <% end %>
     <div class="recipe_details" <% if !@recipe %> style="display:none" <% end %>>
       <table>
         <tr>
