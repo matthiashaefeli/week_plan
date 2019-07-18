@@ -4,7 +4,7 @@
 
 .bg {
   margin: auto;
-  background-image: url('menu.jpg');
+  background-image: url('home.jpg');
   background-attachment: fixed ;
   background-repeat: no-repeat;
   background-size: cover;
@@ -30,4 +30,38 @@
 
 .register:hover {
   background-color: #83B795;
+}
+
+.home_text {
+  text-align: center;
+  width: 50%;
+  margin: 50px auto 0 auto;
+}
+
+.home_image {
+  border-radius: 100px;
+}
+
+.home_meals {
+  width: 50%;
+  margin: 30px auto 80px auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+}
+
+.home_how {
+  text-align: center;
+  width: 80%;
+  margin: 30px auto 0 auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+}
+
+.home_how p {
+  margin: 0 auto 80px auto;
+  width: 50%;
 }
