@@ -14,4 +14,5 @@ Rails.application.routes.draw do
     get 'recipes', on: :collection
   end
   resources :likes, only: [:create, :update]
+  resources :weeks
 end

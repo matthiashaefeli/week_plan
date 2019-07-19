@@ -1,0 +1,8 @@
+<% @weeks.each do |week| %>
+  <% week.meals.each do |m| %>
+    <% meal = JSON.parse(m.recipe) %>
+    <% recipe = meal['meals'][0] %>
+    <% like = Like.find_by(meal_id: m.id) %>
+    <%= render 'welcome/favorite_meals', recipe: recipe, id: m.id %>
+  <% end %>
+<% end %>

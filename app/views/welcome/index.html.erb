@@ -47,8 +47,14 @@
   }
 
   function create_week() {
-    let values = $('.week_box').map(function() { return $(this).children('img').attr('value') });
+    let ids = $('.week_box').map(function() { return $(this).children('img').attr('value') }).get();
     $.ajax({
+      url: '/weeks',
+      method: 'post',
+      data: { ids },
+      success: function(response) {
+        clear_fields()
+      }
     })
   }
 
