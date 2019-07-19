@@ -2,11 +2,54 @@
 <h2>Welcome <%= current_user.user_name %></h2>
 <% end %>
 <h2>My Favorite Meals</h2>
+<div class="week_boxes">
+  <div class="week_box"><p>Monday</p></div>
+  <div class="week_box"><p>Tuesday</p></div>
+  <div class="week_box"><p>Wednesday</p></div>
+  <div class="week_box"><p>Thursday</p></div>
+  <div class="week_box"><p>Friday</p></div>
+  <div>
+    <div  class="submit_week_box"><p onclick="create_week()" class="cursor">Create Week</p></div>
+    <div  class="submit_week_box"><p onclick="clear_fields()" class="cursor">Clear Fields</p></div>
+  </div>
+</div>
 <div id="catMeals">
   <% current_user.meals.each do |m| %>
     <% meal = JSON.parse(m.recipe) %>
     <% recipe = meal['meals'][0] %>
     <% like = Like.find_by(meal_id: m.id) %>
-    <%= render 'favorite_meals', recipe: recipe, like: like %>
+    <%= render 'favorite_meals', recipe: recipe, id: m.id %>
   <% end %>
 </div>
+<script>
+
+  $('.draggable').draggable({
+    helper: 'clone'
+  });
+
+  $(".week_box").droppable({
+    drop: function(event, ui) {
+      $(this).append($(ui.draggable).clone());
+      let p = document.createElement('p')
+      $(p).addClass('remove_button').text('Remove')
+      $(this).append(p)
+    }
+  });
+
+  $('.week_boxes').on('click', '.remove_button', function() {
+    $(this).parent().children('img').remove();
+    $(this).remove();
+  })
+
+  function clear_fields() {
+    $('.week_box').children('img').remove();
+    $('.remove_button').remove();
+  }
+
+  function create_week() {
+    let values = $('.week_box').map(function() { return $(this).children('img').attr('value') });
+    $.ajax({
+    })
+  }
+
+</script>

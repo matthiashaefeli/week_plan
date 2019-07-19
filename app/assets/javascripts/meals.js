@@ -1,15 +1,3 @@
-// add meal to week plan
-function selectMenu(button) {
-  let id = button.attr('id').replace('recipe_id', '')
-  $.ajax({
-    url: '/likes/' + id,
-    method: 'put',
-    success: function(response) {
-      let color = response.notice == false ? 'white' : '#A3D144';
-      button.css('background-color', color);
-    }
-  })
-};
 
 // add or remove like of meal
 function like(event, link) {
