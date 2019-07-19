@@ -1,19 +1,19 @@
-<div>
-  <p onclick="$('.meal_show_recipe').html('');$('.meal_show_recipe_background').toggle();"><i class="fas fa-window-close"></i>Close</p>
+<div class="show_recipe_details">
+  <p onclick="$('.meal_show_recipe').html('');$('.meal_show_recipe_background').toggle();"><i class="fas fa-window-close"></i> Close</p>
   <h3><%= @recipe['strMeal'] %></h3>
   <%= image_tag(@recipe['strMealThumb'], size: '100x100', alt: @recipe['strMealThumb']) %>
   <div class="recipe_details">
     <table>
       <tr>
-        <td>Category:</td>
+        <td class="field_show_recipe_details">Category:</td>
         <td><%= @recipe['strCategory'] %></td>
       </tr>
       <tr>
-        <td>Area:</td>
+        <td class="field_show_recipe_details">Area:</td>
         <td><%= @recipe['strArea'] %></td>
       </tr>
       <tr>
-        <td>Instructions:</td>
+        <td class="field_show_recipe_details">Instructions:</td>
         <td><%= @recipe['strInstructions'] %></td>
       </tr>
       <% index = 1 %>
@@ -24,7 +24,7 @@
           <% break %>
         <% end %>
         <tr>
-          <td><%= @recipe[i]%>:</td>
+          <td class="field_show_recipe_details"><%= @recipe[i]%>:</td>
           <td><%= @recipe[m] %></td>
         </tr>
         <% index += 1%>

@@ -12,7 +12,7 @@
         <i class="far fa-list-alt"></i></div>
       <% end %>
       <div>
-        <%= link_to '', onclick: 'like(event, $(this))' do %>
+        <%= link_to '#', onclick: 'like(event, $(this))' do %>
           <i class="far fa-heart icons" <% if @likes.include?(m['idMeal']) %> style="display:none;" <% end %>></i>
           <i class="fas fa-heart icons" <% if !@likes.include?(m['idMeal']) %> style="display:none;" <% end %>></i>
         <% end %>
