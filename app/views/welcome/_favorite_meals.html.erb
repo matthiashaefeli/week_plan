@@ -1,0 +1,22 @@
+<div class="favorite_meal">
+  <div><%= image_tag(recipe['strMealThumb'], size: '100x100', alt: recipe['strMealThumb']) %></div>
+  <div>
+        <%= link_to '#', onclick: "get_recipe_for_fav_meal(event, $(this))" do %>
+          <i class="far fa-list-alt"></i>
+        <% end %>
+  </div>
+  <div><%= recipe['strMeal'] %></div>
+  <div class="favorite_meals_recipe" style="display:none;">
+    <%= render 'meals/show_recipe', recipe: recipe %>
+  </div>
+</div>
+
+
+
+
+  <% if false %>
+  <div id="recipe_id<%= recipe['idMeal'] %>"
+      class="week_plan_select"
+      onclick="selectMenu($(this))" <% if like && like.week_plan == true %> style="background-color:#A3D144;" <% end %>>Week Plan
+  </div>
+  <% end %>

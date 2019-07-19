@@ -1,14 +1,14 @@
 <div class="meals_home">
-  <div class="category">
+  <div class="">
     <% @categories.each do |c| %>
-      <div class="categories">
+      <div class="category">
         <div class="category_title"><%= link_to c['strCategory'], nil, class: 'category_link' %></div>
         <div><%#= image_tag(c['strCategoryThumb'],size: '150x100', alt: c['strCategory']) %></div>
         <div class="category_desc"><%= c['strCategoryDescription'] %></div>
       </div>
     <% end %>
     <div id="meals">
-      <p><%= link_to '<< Back', nil , onclick: "$('.categories, #meals').toggle();", class: "links" %></p>
+      <p><%= link_to '<< Back', nil , onclick: "$('.category, #meals').toggle();", class: "links" %></p>
       <h2 id="mealTitle"></h2>
       <div id="description"></div>
       <div id="catMeals"></div>
@@ -30,7 +30,7 @@
         $('#mealTitle').html(category);
         $('#description').html(descr);
         $('#catMeals').html(response);
-        $('.categories, #meals').toggle();
+        $('.category, #meals').toggle();
       }
     })
   });

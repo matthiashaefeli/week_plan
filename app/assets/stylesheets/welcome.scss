@@ -2,8 +2,8 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.week_plan_select {
-  border: 1px solid grey;
-  text-align: center;
-  cursor: pointer;
+.favorite_meal {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
 }

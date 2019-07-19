@@ -1,8 +1,4 @@
-function recipeDetails(button) {
-  button.parent().toggle();
-  button.parent().siblings().toggle()
-};
-
+// add meal to week plan
 function selectMenu(button) {
   let id = button.attr('id').replace('recipe_id', '')
   $.ajax({
@@ -15,6 +11,7 @@ function selectMenu(button) {
   })
 };
 
+// add or remove like of meal
 function like(event, link) {
   event.preventDefault();
   let id = link.parent().siblings('input').val();
@@ -28,6 +25,7 @@ function like(event, link) {
   })
 };
 
+// add recipe to box
 function get_recipe(event, link) {
   event.preventDefault();
   let id = link.children('input').val();
@@ -36,9 +34,14 @@ function get_recipe(event, link) {
     method: 'get',
     data: { id },
     success: function(response) {
-      $('.meal_show_recipe').html('')
-      $('.meal_show_recipe_background').toggle();
-      $('.meal_show_recipe').html(response)
+      open_box(response)
     }
   })
+};
+
+// add favorite meal to box
+function get_recipe_for_fav_meal(event, link) {
+  event.preventDefault();
+  let recipe_details = link.parent().siblings('.favorite_meals_recipe').find('.show_recipe_details').clone();
+  open_box(recipe_details)
 };

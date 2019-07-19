@@ -7,6 +7,6 @@
     <% meal = JSON.parse(m.recipe) %>
     <% recipe = meal['meals'][0] %>
     <% like = Like.find_by(meal_id: m.id) %>
-    <%= render 'meals/recipe', recipe: recipe, like: like %>
+    <%= render 'favorite_meals', recipe: recipe, like: like %>
   <% end %>
 </div>
