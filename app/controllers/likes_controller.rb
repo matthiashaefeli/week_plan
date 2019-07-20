@@ -3,8 +3,8 @@ class LikesController < ApplicationController
     like = Like.find_by(user_id: current_user.id, meal_string: params[:id])
     if like
       meal = Meal.find(like.meal_id)
-      like.destroy
       meal.destroy
+      like.destroy
     else
       url = 'https://www.themealdb.com/api/json/v2/8673533/lookup.php?i=' + params[:id]
       recipe = Net::HTTP.get(URI.parse(url))
