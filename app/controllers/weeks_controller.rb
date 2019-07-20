@@ -8,7 +8,7 @@ class WeeksController < ApplicationController
     counter = 0
     params[:ids].each do |id|
       @week.meals << Meal.find(id)
-      @week.days << params[:days][counter]
+      @week.days << params[:weekdays][counter]
       counter += 1
     end
     @week.save

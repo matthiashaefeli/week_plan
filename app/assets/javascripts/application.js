@@ -16,3 +16,7 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+
+function clear_meals() {
+  $('.category, #meals').toggle();
+}
