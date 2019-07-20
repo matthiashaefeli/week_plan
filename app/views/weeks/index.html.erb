@@ -1,8 +1,28 @@
-<% @weeks.each do |week| %>
-  <% week.meals.each do |m| %>
-    <% meal = JSON.parse(m.recipe) %>
-    <% recipe = meal['meals'][0] %>
-    <% like = Like.find_by(meal_id: m.id) %>
-    <%= render 'welcome/favorite_meals', recipe: recipe, id: m.id %>
+<div class="weeks">
+  <% @weeks.each do |week| %>
+    <div class="week_details">
+      <table>
+        <tr>
+          <td>Grocery List:</td>
+          <td><i class="fas fa-list-ol"></i></td>
+        </tr>
+        <tr>
+          <input type='hidden' name="id" value="<%= week.id %>">
+          <td>Delete Week:</td>
+          <td><i class="far fa-trash-alt delete_week" onclick="delete_week($(this))"></i></td>
+        </tr>
+          <% counter = 0 %>
+          <% week.meals.each do |m| %>
+        <tr>
+          <% meal = JSON.parse(m.recipe) %>
+          <% recipe = meal['meals'][0] %>
+          <% like = Like.find_by(meal_id: m.id) %>
+          <td><%= week.days[counter] %>: </td>
+          <td><%= render 'recipe', recipe: recipe, id: m.id , img: 'false' %></td>
+          <% counter += 1 %>
+        </tr>
+        <% end %>
+      </table>
+    </div>
   <% end %>
-<% end %>
+</div>

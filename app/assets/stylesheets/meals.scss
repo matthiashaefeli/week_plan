@@ -40,7 +40,7 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: flex-start;
 }
 
 #catMeals img {
@@ -52,7 +52,7 @@
   transform: scale(1.5, 1.5)
 }
 
-.meal {
+.meal, .favorite_meal {
   min-width: 165px;
   max-width: 165px;
   margin: 10px;

@@ -1,6 +1,5 @@
 <div class="show_recipe_details">
   <% recipe = @recipe || recipe %>
-  
   <h3><%= recipe['strMeal'] %></h3>
   <%= image_tag(recipe['strMealThumb'], size: '100x100', alt: recipe['strMealThumb']) %>
   <div class="recipe_details">

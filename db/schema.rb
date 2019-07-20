@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 2019_07_19_214225) do
 
   create_table "weeks", force: :cascade do |t|
     t.integer "user_id"
+    t.text "days", default: [], array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
