@@ -4,7 +4,7 @@
       <table>
         <tr>
           <td>Grocery List:</td>
-          <td><i class="fas fa-list-ol"></i></td>
+          <td><i class="fas fa-list-ol" onclick="grocery_list($(this))"></i></td>
         </tr>
         <tr>
           <input type='hidden' name="id" value="<%= week.id %>">
@@ -26,3 +26,16 @@
     </div>
   <% end %>
 </div>
+
+<script>
+function grocery_list(list) {
+  let id = list.parents('table').find('input').val()
+  $.ajax({
+    url: 'weeks/' + id,
+    method: 'get',
+    success: function(response) {
+      open_box(response)
+    }
+  })
+}
+</script>
