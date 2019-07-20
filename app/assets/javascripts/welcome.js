@@ -6,7 +6,10 @@ function clear_fields() {
 
 function create_week() {
   let ids = $('.week_box').map(function() { return $(this).children('img').attr('value') }).get();
-  // let days = $('.week_box').map(function() { return $(this).children('p').text().replace('Remove', '') }).get();
+  if (ids.length == 0) {
+    $('#success_text').html('Please add Meals to Week Plan!')
+    return
+  }
   let weekdays = []
   $('.week_box').each(function() {
     if ($(this).children('img').length > 0) {

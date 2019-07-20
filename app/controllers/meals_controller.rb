@@ -1,4 +1,5 @@
 class MealsController < ApplicationController
+  before_action :loged_in
   def index
     url = 'https://www.themealdb.com/api/json/v2/8673533/categories.php'
     result = Net::HTTP.get(URI.parse(url))

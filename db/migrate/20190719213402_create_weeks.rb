@@ -3,6 +3,7 @@ class CreateWeeks < ActiveRecord::Migration[5.2]
     create_table :weeks do |t|
       t.integer :user_id
       t.text :days, array: true, default: []
+      t.text :grocery
 
       t.timestamps
     end

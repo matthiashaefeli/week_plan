@@ -1,4 +1,5 @@
 class WeeksController < ApplicationController
+  before_action :loged_in
   def index
     @weeks = Week.where(user_id: current_user.id)
   end

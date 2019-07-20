@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  before_action :loged_in, only: [:destroy]
   def new
   end
 
@@ -8,7 +9,7 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       redirect_to welcome_index_path, notice: "Logged in!"
     else
-      flash.now[:alert] = "Email or password is invalid"
+      @notice = "Email or password is invalid"
       render "new"
     end
   end

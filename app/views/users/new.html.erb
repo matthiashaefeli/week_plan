@@ -1,4 +1,7 @@
 <div class="home_login_signup">
+  <% if !notice.nil? %>
+    <p><%= notice.join(', ') %></p>
+  <% end %>
   <h2>Sign Up</h2>
   <%= form_for @user do |form| %>
     <div>

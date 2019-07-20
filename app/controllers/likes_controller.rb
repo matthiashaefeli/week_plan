@@ -1,4 +1,5 @@
 class LikesController < ApplicationController
+  before_action :loged_in
   def create
     like = Like.find_by(user_id: current_user.id, meal_string: params[:id])
     if like
