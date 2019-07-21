@@ -16,6 +16,6 @@ function get_recipe(event, link) {
 // add favorite meal to box
 function get_recipe_for_fav_meal(event, link) {
   event.preventDefault();
-  let recipe_details = link.parent().siblings('.favorite_meals_recipe').find('.show_recipe_details').clone();
+  let recipe_details = link.parent().parent().siblings('.favorite_meals_recipe').find('.show_recipe_details').clone();
   open_box(recipe_details)
 };
