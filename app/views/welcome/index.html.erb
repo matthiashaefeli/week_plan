@@ -1,3 +1,21 @@
-<h2><%= current_user.user_name%> Welcome to the Week Planer</h2>
-<h3>How it works!</h3>
-<p>explain to select menues in blabla and then create week how bla bla etc</p>
+<div class="welcome_index">
+  <h2><%= current_user.user_name%> Welcome to the Week Planer</h2>
+  <%= image_tag('teach.png', size: '150x100', alt: 'instructions') %>
+  <h3>How it works!</h3>
+  <div>
+    <%= image_tag('list.jpg', size: '100x100') %>
+    <p><i class="far fa-hand-pointer icons"></i> Select in <%= link_to 'Meals', meals_path, class: "welcome_index_links" %> your favorite Meals with a click on <i class="far fa-heart icons"></i>.</p>
+  </div>
+  <div>
+    <%= image_tag('list.jpg', size: '100x100') %>
+    <p>In <%= link_to 'Create Week Plan', new_week_path, class: "welcome_index_links" %> Drag and drop the Meal to the Week Days.</p>
+  </div>
+  <div>
+    <%= image_tag('list.jpg', size: '100x100') %>
+    <p>Click on Create Week to create the Grocery List.</p>
+  </div>
+  <div>
+    <%= image_tag('list.jpg', size: '100x100') %>
+    <p>In <%= link_to 'My Week Plans', weeks_path, class: "welcome_index_links" %> click on <i class="fas fa-list-ol"></i> to Show the Grocery List.</p>
+  </div>
+</div>
