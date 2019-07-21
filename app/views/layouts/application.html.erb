@@ -14,8 +14,9 @@
       <ul>
         <li onclick="clear_meals()"><%= link_to 'Meal Week Planer', root_path %></li>
         <% if current_user %>
-          <li onclick="clear_meals()"><%= link_to 'Welcome', welcome_index_path %></li>
-          <li onclick="clear_meals()"><%= link_to 'My Weeks', weeks_path %></li>
+          <li onclick="clear_meals()"><%= link_to 'Home', welcome_index_path %></li>
+          <li onclick="clear_meals()"><%= link_to 'Create Week Plan', new_week_path %></li>
+          <li onclick="clear_meals()"><%= link_to 'My Week Plans', weeks_path %></li>
           <li><%= link_to 'Meals', meals_path %></li>
           <li onclick="clear_meals()"><%= link_to 'Log Out', logout_path %></li>
         <% else %>
@@ -25,8 +26,14 @@
       </ul>
       <div class="box_background"></div>
       <div class="show_box">
-        <p onclick="close_box()"><i class="fas fa-window-close"></i> Close</p>
+        <p class="box_links" onclick="close_box()"><i class="fas fa-window-close"></i> Close</p>
+        <p class="box_links" onclick="printPage()"><i class="fas fa-print"></i> Print</p>
         <div class="content"></div>
+        <script>
+          function printPage() {
+              window.print()
+          }
+        </script>
       </div>
       <%= yield %>
     </div>

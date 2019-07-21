@@ -1,0 +1,20 @@
+<div class="favorite_meal">
+  <div><%= image_tag(recipe['strMealThumb'], size: '100x100', alt: recipe['strMealThumb'], class: 'draggable', value: id) %></div>
+  <div class="meal_icons">
+    <div>
+      <%= link_to '#', onclick: "get_recipe_for_fav_meal(event, $(this))" do %>
+        <i class="far fa-list-alt"></i>
+      <% end %>
+    </div>
+    <div>
+      <%= link_to '#', onclick: 'delete_like(event, $(this))' do %>
+        <input type="hidden" name="id" value="<%= recipe['idMeal'] %>">
+        <i class="fas fa-heart icons"></i>
+      <% end %>
+    </div>
+  </div>
+  <div><%= recipe['strMeal'] %></div>
+  <div class="favorite_meals_recipe" style="display:none;">
+    <%= render 'meals/show_recipe', recipe: recipe %>
+  </div>
+</div>

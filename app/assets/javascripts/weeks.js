@@ -14,3 +14,16 @@ function delete_week(i) {
     }
   })
 };
+
+function delete_like(event, link) {
+  event.preventDefault();
+  let id = link.find('input').val();
+  $.ajax({
+    url: '/likes',
+    method: 'post',
+    data: { id },
+    success: function() {
+      link.parents('.favorite_meal').remove();
+    }
+  })
+};

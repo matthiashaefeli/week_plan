@@ -4,6 +4,9 @@ class WeeksController < ApplicationController
     @weeks = Week.where(user_id: current_user.id)
   end
 
+  def new
+  end
+
   def create
     @week = Week.new(user_id: current_user.id)
     counter = 0
@@ -23,11 +26,14 @@ class WeeksController < ApplicationController
           break
         end
         meal_value = meal[m].gsub(/[^0-9]/, '').to_i
-        meal_measure = meal[m].gsub(/[^A-Za-z]/, '')
-        if ingredients[meal[i]] && ingredients[meal[i]][1] == meal_measure
-          ingredients[meal[i]][0] += meal_value
+        meal_measure = meal[m].gsub(/[^A-Za-z]/, '').upcase
+        if ingredients.key?(meal[i].upcase) && ingredients[meal[i].upcase][1] == meal_measure
+          ingredients[meal[i].upcase][0] += meal_value
+        elsif ingredients.key?(meal[i].upcase)
+          ingredients[meal[i].upcase] << meal_value
+          ingredients[meal[i].upcase] << meal_measure
         else
-          ingredients[meal[i]] = [meal_value, meal_measure]
+          ingredients[meal[i].upcase] = [meal_value, meal_measure]
         end
         index += 1
       end

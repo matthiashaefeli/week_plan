@@ -63,3 +63,8 @@ li a:hover {
   color: #83B795;
 }
 
+@media print {
+  body,html {
+    height:100%;
+  }
+}

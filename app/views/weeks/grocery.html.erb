@@ -1,9 +1,15 @@
-<h2>Grocery List</h2>
-<table>
-  <% @week.grocery.each do |k, v| %>
-    <tr>
-      <td><%= k %></td>
-      <td><%= v[0]%> -> <%= v[1] %></td>
-    </tr>
-  <% end %>
-</table>
+<div>
+  <h2>Grocery List</h2>
+  <table>
+    <% @week.grocery.each do |k, v| %>
+      <tr>
+        <td><%= k %></td>
+        <% if v.length > 1 %>
+          <td><%= v.join(' ') %></td>
+        <% else %>
+          <td><%= v[0]%> -> <%= v[1] %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </table>
+</div>
