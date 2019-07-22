@@ -12,13 +12,13 @@
   <body>
     <div class="home">
       <ul>
-        <li onclick="clear_meals()"><%= link_to 'Meal Week Planer', root_path %></li>
+        <li><%= link_to 'Meal Week Planer', root_path %></li>
         <% if current_user %>
-          <li onclick="clear_meals()"><%= link_to 'Home', welcome_index_path %></li>
-          <li onclick="clear_meals()"><%= link_to 'Create Week Plan', new_week_path %></li>
-          <li onclick="clear_meals()"><%= link_to 'My Week Plans', weeks_path %></li>
+          <li><%= link_to 'Home', welcome_index_path %></li>
+          <li><%= link_to 'Create Week Plan', new_week_path %></li>
+          <li><%= link_to 'My Week Plans', weeks_path %></li>
           <li><%= link_to 'Meals', meals_path %></li>
-          <li onclick="clear_meals()"><%= link_to 'Log Out', logout_path %></li>
+          <li><%= link_to 'Log Out', logout_path %></li>
         <% else %>
           <li><%= link_to 'Sign Up', signup_path %></li>
           <li><%= link_to 'Log In', login_path %></li>
