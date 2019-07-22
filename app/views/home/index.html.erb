@@ -1,7 +1,9 @@
 <div class="welcome">
   <div class="bg">
-    <%= link_to signup_path, class: "register" do %>
-      Register
+    <% if !current_user %>
+      <%= link_to signup_path, class: "register" do %>
+        Register
+      <% end %>
     <% end %>
   </div>
   <div class="home_text">

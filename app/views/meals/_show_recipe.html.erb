@@ -20,7 +20,7 @@
       <% loop do %>
         <% i = 'strIngredient' + index.to_s %>
         <% m = 'strMeasure' + index.to_s %>
-        <% if recipe[i] == '' %>
+        <% if recipe[i] == '' || recipe[i] == nil %>
           <% break %>
         <% end %>
         <tr>

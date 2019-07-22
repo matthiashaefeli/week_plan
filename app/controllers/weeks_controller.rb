@@ -22,7 +22,7 @@ class WeeksController < ApplicationController
       loop do
         i = 'strIngredient' + index.to_s
         m = 'strMeasure' + index.to_s
-        if meal[i] == ''
+        if meal[i] == '' || meal[i] == nil
           break
         end
         meal_value = meal[m].gsub(/[^0-9]/, '').to_i

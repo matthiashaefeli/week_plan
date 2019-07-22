@@ -1,12 +1,20 @@
 <div class="meals_home">
   <div class="">
-    <% @categories.each do |c| %>
-      <div class="category">
-        <div class="category_title"><%= link_to c['strCategory'], nil, class: 'category_link' %></div>
-        <div><%#= image_tag(c['strCategoryThumb'],size: '150x100', alt: c['strCategory']) %></div>
-        <div class="category_desc"><%= c['strCategoryDescription'] %></div>
-      </div>
-    <% end %>
+    <div class="category">
+      <% @categories.each do |c| %>
+        <div>
+          <%= link_to('#', class: 'category_link' ) do %>
+            <table>
+              <tr>
+                <td><%= image_tag(c['strCategoryThumb'],size: '150x100', alt: c['strCategory']) %></td>
+                <td><%= c['strCategory'] %></td>
+              </tr>
+            </table>
+            <div class="category_desc"><%= c['strCategoryDescription'] %></div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
     <div id="meals">
       <p><%= link_to '<< Back', nil , onclick: "$('.category, #meals').toggle();", class: "links" %></p>
       <h2 id="mealTitle"></h2>
@@ -19,8 +27,8 @@
 <script>
   $('.category_link').on('click', function(event) {
     event.preventDefault();
-    let category = $(this).text();
-    let descr = $(this).parents('.category_title').siblings('.category_desc').text();
+    let category = this.innerText.trim();
+    let descr =$(this).find('.category_desc').text();
     $.ajax({
       url: 'meals/meals',
       method: 'get',
