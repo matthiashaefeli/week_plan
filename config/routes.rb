@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :meals do
     get 'meals', on: :collection
     get 'recipes', on: :collection
+    get 'show_details', on: :collection
   end
   resources :likes, only: [:create, :update]
   resources :weeks

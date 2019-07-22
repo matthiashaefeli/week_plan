@@ -1,0 +1,22 @@
+<div class="week_details">
+  <table>
+    <tr>
+      <td>Grocery List:</td>
+      <td><i class="fas fa-list-ol" onclick="grocery_list($(this))"></i></td>
+    </tr>
+    <tr>
+      <input type='hidden' name="id" value="<%= week.id %>">
+      <td>Delete Week:</td>
+      <td><i class="far fa-trash-alt delete_week" onclick="delete_week($(this))"></i></td>
+    </tr>
+      <% counter = 0 %>
+      <% week.meals.each do |m| %>
+    <tr>
+      <% meal = JSON.parse(m.recipe) %>
+      <td><%= render 'recipe', meal: m %></td>
+      <td><%= week.days[counter] %>: </td>
+      <% counter += 1 %>
+    </tr>
+    <% end %>
+  </table>
+</div>

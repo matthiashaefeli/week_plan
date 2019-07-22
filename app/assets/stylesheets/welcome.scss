@@ -19,3 +19,14 @@
 .welcome_index_links:hover {
   color: #83B795
 }
+
+.instructions {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.instructions div {
+  max-width: 160px;
+  margin: 10px;
+}

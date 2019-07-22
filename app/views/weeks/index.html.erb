@@ -1,41 +1,13 @@
-<div class="weeks">
-  <% @weeks.each do |week| %>
-    <div class="week_details">
-      <table>
-        <tr>
-          <td>Grocery List:</td>
-          <td><i class="fas fa-list-ol" onclick="grocery_list($(this))"></i></td>
-        </tr>
-        <tr>
-          <input type='hidden' name="id" value="<%= week.id %>">
-          <td>Delete Week:</td>
-          <td><i class="far fa-trash-alt delete_week" onclick="delete_week($(this))"></i></td>
-        </tr>
-          <% counter = 0 %>
-          <% week.meals.each do |m| %>
-        <tr>
-          <% meal = JSON.parse(m.recipe) %>
-          <% recipe = meal['meals'][0] %>
-          <% like = Like.find_by(meal_id: m.id) %>
-          <td><%= week.days[counter] %>: </td>
-          <td><%= render 'recipe', recipe: recipe, id: m.id , img: 'false' %></td>
-          <% counter += 1 %>
-        </tr>
-        <% end %>
-      </table>
-    </div>
-  <% end %>
+<div>
+  <div class="week_title">
+    <h2>My Weeks</h2>
+    <p>Click on <i class="fas fa-list-ol"></i> to Get the Grocery List.</p>
+    <p>Click on <i class="far fa-list-alt"></i> to Get the Recipe.</p>
+    <p>Click on <i class="far fa-trash-alt"></i> to Delete this Week</p>
+  </div>
+  <div class="weeks">
+    <% @weeks.each do |week| %>
+      <%= render "week", week: week %>
+    <% end %>
+  </div>
 </div>
-
-<script>
-function grocery_list(list) {
-  let id = list.parents('table').find('input').val()
-  $.ajax({
-    url: 'weeks/' + id,
-    method: 'get',
-    success: function(response) {
-      open_box(response)
-    }
-  })
-}
-</script>

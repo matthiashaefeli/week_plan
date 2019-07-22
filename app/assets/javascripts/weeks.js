@@ -27,3 +27,14 @@ function delete_like(event, link) {
     }
   })
 };
+
+function grocery_list(list) {
+  let id = list.parents('table').find('input').val()
+  $.ajax({
+    url: 'weeks/' + id,
+    method: 'get',
+    success: function(response) {
+      open_box(response)
+    }
+  })
+}
