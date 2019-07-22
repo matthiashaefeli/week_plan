@@ -27,13 +27,8 @@
       <div class="box_background"></div>
       <div class="show_box">
         <p class="box_links" onclick="close_box()"><i class="fas fa-window-close"></i> Close</p>
-        <p class="box_links" onclick="printPage()"><i class="fas fa-print"></i> Print</p>
-        <div class="content"></div>
-        <script>
-          function printPage() {
-              window.print()
-          }
-        </script>
+        <p class="box_links" onclick="$('#toPrint').printThis();"><i class="fas fa-print"></i> Print</p>
+        <div class="content" id="toPrint"></div>
       </div>
       <%= yield %>
     </div>
