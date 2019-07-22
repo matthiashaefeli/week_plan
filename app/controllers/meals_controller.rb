@@ -1,7 +1,7 @@
 class MealsController < ApplicationController
   before_action :loged_in
   def index
-    url = 'https://www.themealdb.com/api/json/v2/8673533/categories.php'
+    url = ENV['all_categories_url']
     result = Net::HTTP.get(URI.parse(url))
     categories = JSON.parse(result)
     @categories = categories['categories']
@@ -55,7 +55,7 @@ class MealsController < ApplicationController
 
   def meals
     @likes = current_user.likes.map { |l| l.meal_string }
-    url = 'https://www.themealdb.com/api/json/v2/8673533/filter.php?c=' + params[:category]
+    url = ENV['category_url'] + params[:category]
     result = Net::HTTP.get(URI.parse(url))
     meals = JSON.parse(result)
     @meals = meals['meals']
@@ -82,7 +82,7 @@ class MealsController < ApplicationController
   end
 
   def recipes
-    url = 'https://www.themealdb.com/api/json/v2/8673533/lookup.php?i=' + params[:id]
+    url = ENV['meal_details_url'] + params[:id]
     result = Net::HTTP.get(URI.parse(url))
     recipe = JSON.parse(result)
     @recipe = recipe['meals'][0]
