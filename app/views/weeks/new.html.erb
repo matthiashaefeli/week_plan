@@ -13,10 +13,7 @@
 </div>
 <div id="catMeals">
   <% current_user.meals.each do |m| %>
-    <% meal = JSON.parse(m.recipe) %>
-    <% recipe = meal['meals'][0] %>
-    <% like = Like.find_by(meal_id: m.id) %>
-    <%= render 'favorite_meals', recipe: recipe, id: m.id %>
+    <%= render 'favorite_meals', meal: m %>
   <% end %>
 </div>
 <script>

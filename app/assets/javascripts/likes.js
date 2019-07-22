@@ -7,8 +7,10 @@ function like(event, link) {
     url: 'likes',
     method: 'post',
     data: { id },
-    success: function() {
+    beforeSend: function() {
       link.find('.icons').toggle();
+    },
+    success: function() {
     }
   })
 };

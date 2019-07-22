@@ -141,4 +141,11 @@ class MealsController < ApplicationController
       "dateModified"=>nil}
     render partial: 'show_recipe'
   end
+
+  def show_details
+    m = Meal.find(params[:id])
+    meal = JSON.parse(m.recipe)
+    @recipe = meal['meals'][0]
+    render partial: 'show_recipe'
+  end
 end

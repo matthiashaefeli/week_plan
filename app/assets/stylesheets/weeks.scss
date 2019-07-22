@@ -6,9 +6,18 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: space-evenly;
+  margin: 50px auto 50px auto;
+}
+
+.week_details {
+  padding: 20px;
 }
 
 .week_meals {
   display: inline;
+}
+
+.week_title {
+  text-align: center;
 }
