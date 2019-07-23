@@ -7,7 +7,7 @@ class LikesController < ApplicationController
       meal.destroy
       like.destroy
     else
-      url = ENV['MEAL_DETAILS_URL'] + params[:id]
+      url = ENV['meal_details_url'] + params[:id]
       recipe = Net::HTTP.get(URI.parse(url))
       meal_hash = JSON.parse(recipe)
       name = meal_hash['meals'][0]['strMeal']
