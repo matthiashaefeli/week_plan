@@ -1,3 +1,4 @@
+require 'net/http'
 class MealsController < ApplicationController
   before_action :loged_in
   def index
