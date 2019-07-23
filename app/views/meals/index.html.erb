@@ -1,18 +1,22 @@
 <div class="meals_home">
   <div class="">
     <div class="category">
-      <% @categories.each do |c| %>
-        <div>
-          <%= link_to('#', class: 'category_link' ) do %>
-            <table>
-              <tr>
-                <td><%= image_tag(c['strCategoryThumb'],size: '150x100', alt: c['strCategory']) %></td>
-                <td><%= c['strCategory'] %></td>
-              </tr>
-            </table>
-            <div class="category_desc"><%= c['strCategoryDescription'] %></div>
-          <% end %>
-        </div>
+      <% if @error %>
+        <div><p><%= @error%> </p></div>
+      <% else %>
+        <% @categories.each do |c| %>
+          <div>
+            <%= link_to('#', class: 'category_link' ) do %>
+              <table>
+                <tr>
+                  <td><%= image_tag(c['strCategoryThumb'],size: '150x100', alt: 'MealImage') %></td>
+                  <td><%= c['strCategory'] %></td>
+                </tr>
+              </table>
+              <div class="category_desc"><%= c['strCategoryDescription'] %></div>
+            <% end %>
+          </div>
+        <% end %>
       <% end %>
     </div>
     <div id="meals">

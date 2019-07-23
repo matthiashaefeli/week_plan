@@ -1,21 +1,25 @@
-<% @meals.each do |m| %>
-  <div class="meal">
-    <div>
-      <%= image_tag(m['strMealThumb'], size: '100x100', alt: m['strMealThumb']) %>
-    </div>
-    <div class="meal_icons">
+<% if @error %>
+  <div><p><%= @error%> </p></div>
+<% else %>
+  <% @meals.each do |m| %>
+    <div class="meal">
       <div>
-      <%= link_to '#', onclick: 'get_recipe(event, $(this))' do %>
-        <input type="hidden" name="id" value="<%= m['idMeal'] %>">
-        <i class="far fa-list-alt"></i></div>
-      <% end %>
-      <div>
-        <%= link_to '#', onclick: 'like(event, $(this))' do %>
-          <i class="far fa-heart icons" <% if @likes.include?(m['idMeal']) %> style="display:none;" <% end %>></i>
-          <i class="fas fa-heart icons" <% if !@likes.include?(m['idMeal']) %> style="display:none;" <% end %>></i>
-        <% end %>
+        <%= image_tag(m['strMealThumb'], size: '100x100', alt: 'MealImage') %>
       </div>
+      <div class="meal_icons">
+        <div>
+        <%= link_to '#', onclick: 'get_recipe(event, $(this))' do %>
+          <input type="hidden" name="id" value="<%= m['idMeal'] %>">
+          <i class="far fa-list-alt"></i></div>
+        <% end %>
+        <div>
+          <%= link_to '#', onclick: 'like(event, $(this))' do %>
+            <i class="far fa-heart icons" <% if @likes.include?(m['idMeal']) %> style="display:none;" <% end %>></i>
+            <i class="fas fa-heart icons" <% if !@likes.include?(m['idMeal']) %> style="display:none;" <% end %>></i>
+          <% end %>
+        </div>
+      </div>
+      <p><%= m['strMeal'] %></p>
     </div>
-    <p><%= m['strMeal'] %></p>
-  </div>
+  <% end %>
 <% end %>

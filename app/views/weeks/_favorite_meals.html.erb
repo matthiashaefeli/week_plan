@@ -1,5 +1,5 @@
 <div class="favorite_meal">
-  <div><%= image_tag(meal.img_url, size: '100x100', alt: meal.name, class: 'draggable', value: meal.id) %></div>
+  <div><%= image_tag(meal.img_url, size: '100x100', alt: 'MealImage', class: 'draggable', value: meal.id) %></div>
   <div class="meal_icons">
     <div>
       <%= link_to '#', onclick: "get_recipe_for_fav_meal(event, $(this))" do %>

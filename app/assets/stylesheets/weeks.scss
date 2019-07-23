@@ -24,3 +24,52 @@
 .week_title {
   text-align: center;
 }
+
+.week_boxes {
+  display: flex;
+  flex-direction: row;
+  margin: 50px;
+}
+
+.week_box {
+  border-style: outset;
+  min-width: 100px;
+  max-width: 100px;
+  min-height: 140px;
+  text-align: center;
+  margin: 2px;
+}
+
+.week_box p {
+  margin: 0;
+  padding: 0;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.submit_week_box p {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.submit_week_box {
+  border-style: outset;
+  min-width: 100px;
+  max-width: 100px;
+  min-height: 50px;
+  max-height: 50px;
+  text-align: center;
+  margin: 2px;
+}
+
+.remove_button, .cursor, .box_links {
+  cursor: pointer;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  background-color: white;
+}
+
+.white_div {
+  height: 200px;
+}
