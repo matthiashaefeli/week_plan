@@ -2,7 +2,7 @@ class MealsController < ApplicationController
   before_action :loged_in
   def index
     begin
-      url = ENV['all_categories_url']
+      url = ENV['ALL_CAT_URL']
       result = Net::HTTP.get(URI.parse(url))
       categories = JSON.parse(result)
       @categories = categories['categories']
@@ -14,7 +14,7 @@ class MealsController < ApplicationController
   def meals
     @likes = current_user.likes.map { |l| l.meal_string }
     begin
-      url = ENV['category_url'] + params[:category]
+      url = ENV['CAT_URL'] + params[:category]
       result = Net::HTTP.get(URI.parse(url))
       meals = JSON.parse(result)
       @meals = meals['meals']
@@ -26,7 +26,7 @@ class MealsController < ApplicationController
 
   def recipes
     begin
-      url = ENV['meal_details_url'] + params[:id]
+      url = ENV['MEAL_DETAILS_URL'] + params[:id]
       result = Net::HTTP.get(URI.parse(url))
       recipe = JSON.parse(result)
       @recipe = recipe['meals'][0]
