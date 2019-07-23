@@ -1,6 +1,7 @@
 <h2>Create My Week Plan</h2>
+<div id="whiteDiv"></div>
 <div id="success_text"></div>
-<div class="week_boxes">
+<div class="week_boxes" id="stickyWeek">
   <div class="week_box"><p>Monday</p></div>
   <div class="week_box"><p>Tuesday</p></div>
   <div class="week_box"><p>Wednesday</p></div>
@@ -17,6 +18,16 @@
   <% end %>
 </div>
 <script>
+  let $window = $(window),
+      $sticky = $('#stickyWeek'),
+      elTop = $sticky.offset().top -100;
+
+  $window.scroll(function() {
+    $('#whiteDiv').toggleClass('white_div', $window.scrollTop() > elTop);
+    $sticky.toggleClass('sticky', $window.scrollTop() > elTop);
+
+  })
+
   $('.draggable').draggable({
     helper: 'clone'
   });

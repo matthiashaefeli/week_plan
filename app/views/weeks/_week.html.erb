@@ -13,8 +13,8 @@
       <% week.meals.each do |m| %>
     <tr>
       <% meal = JSON.parse(m.recipe) %>
-      <td><%= render 'recipe', meal: m %></td>
       <td><%= week.days[counter] %>: </td>
+      <td><%= render 'recipe', meal: m %></td>
       <% counter += 1 %>
     </tr>
     <% end %>
