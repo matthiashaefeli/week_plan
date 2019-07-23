@@ -1,14 +1,14 @@
 class MealsController < ApplicationController
   before_action :loged_in
   def index
-    begin
-      url = ENV['all_categories_url']
+    # begin
+      url = 'https://www.themealdb.com/api/json/v2/8673533/categories.php'
       result = Net::HTTP.get(URI.parse(url))
       categories = JSON.parse(result)
       @categories = categories['categories']
-    rescue
-      @error = 'Sorry: Meal Server Down. Please Come Back Later!'
-    end
+    # rescue
+    #   @error = 'Sorry: Meal Server Down. Please Come Back Later!'
+    # end
   end
 
   def meals
