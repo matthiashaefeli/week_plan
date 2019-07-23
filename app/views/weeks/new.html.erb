@@ -18,9 +18,9 @@
   <% end %>
 </div>
 <script>
-  let $window = $(window),
-      $sticky = $('#stickyWeek'),
-      elTop = $sticky.offset().top -100;
+  $window = $(window)
+  $sticky = $('#stickyWeek')
+  elTop = $sticky.offset().top -100;
 
   $window.scroll(function() {
     $('#whiteDiv').toggleClass('white_div', $window.scrollTop() > elTop);
