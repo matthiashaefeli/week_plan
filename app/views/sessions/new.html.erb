@@ -1,6 +1,6 @@
 <div class="home_login_signup">
-  <% if !@notice.nil? %>
-    <p><%= @notice %></p>
+  <% if !notice.nil? %>
+    <p><%= notice.join(', ') %></p>
   <% end %>
   <h2>Login</h2>
   <%= form_tag sessions_path do |form| %>
