@@ -28,7 +28,8 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 gem 'jquery-rails'
-gem 'jquery-ui-rails'
+gem 'jquery-ui-rails', '~> 5.0.5'
+gem 'touchpunch-rails'
 gem 'font-awesome-sass'
 gem "figaro"
 

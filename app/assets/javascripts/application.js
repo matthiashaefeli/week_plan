@@ -13,6 +13,10 @@
 //= require jquery
 //= require jquery-ui
 //= require rails-ujs
+//= require jquery.ui.touch-punch
+//= require jquery-ui/core
+//= require jquery-ui/widget
+//= require jquery-ui/position
 //= require activestorage
 //= require turbolinks
 //= require_tree .
