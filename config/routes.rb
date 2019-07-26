@@ -16,4 +16,5 @@ Rails.application.routes.draw do
   end
   resources :likes, only: [:create, :update]
   resources :weeks
+  resources :my_meals
 end

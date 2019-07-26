@@ -21,6 +21,9 @@
           <li><%= link_to 'My Week Plans', weeks_path %></li>
           <li><%= link_to 'Meals', meals_path %></li>
           <li><%= link_to 'Log Out', logout_path %></li>
+          <% if current_user.super %>
+            <li><%= link_to 'Create Meal', new_my_meal_path %></li>
+          <% end %>
         <% else %>
           <li><%= link_to 'Sign Up', signup_path %></li>
           <li><%= link_to 'Log In', login_path %></li>
