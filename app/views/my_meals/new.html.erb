@@ -3,8 +3,8 @@
     <p><%= notice.join(', ') %></p>
   <% end %>
   <h2>Create New Meal</h2>
-  <table class="create_table">
-    <%= form_for @my_meal do |form| %>
+  <%= form_for @my_meal do |form| %>
+    <table class="create_table">
       <tr>
         <td><%= form.label :titel %></td>
         <td><%= form.text_field :strMeal %></td>
@@ -59,8 +59,8 @@
       <tr>
         <td><%= form.submit %></td>
       </tr>
-    <% end %>
-  </table>
+    </table>
+  <% end %>
 </div>
 <script>
   $('#my_meal_strMeal').focus();
