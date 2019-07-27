@@ -1,0 +1,9 @@
+<div>
+  <% @my_meals.each do |m| %>
+    <p>
+      <%= m.strMeal %>
+      <i class="far fa-trash-alt delete_week" onclick="delete_meal($(this))"></i>
+      <input type="hidden" name="id" value="<%= m.idMeal %>">
+    </p>
+  <% end %>
+</div>

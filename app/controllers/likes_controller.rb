@@ -7,14 +7,21 @@ class LikesController < ApplicationController
       meal.destroy
       like.destroy
     else
-      url = ENV['meal_details_url'] + params[:id]
-      recipe = Net::HTTP.get(URI.parse(url))
-      meal_hash = JSON.parse(recipe)
-      name = meal_hash['meals'][0]['strMeal']
-      img_url = meal_hash['meals'][0]['strMealThumb']
-      meal_id_string = meal_hash['meals'][0]['idMeal']
-      meal = Meal.create(recipe: recipe, user_id: current_user.id, name: name, img_url: img_url, meal_id_string: meal_id_string)
-      meal.save
+      if params[:local]
+        my_meal = MyMeal.find(params[:id])
+        meal = Meal.create(recipe: my_meal.to_hash.to_json, user_id: current_user.id, name: my_meal.strMeal, img_url: my_meal.strMealThumb, meal_id_string: my_meal.idMeal.to_s)
+        meal.save
+      else
+        url = ENV['meal_details_url'] + params[:id]
+        response = Net::HTTP.get(URI.parse(url))
+        meal_hash = JSON.parse(response)
+        recipe = meal_hash['meals'][0].to_json
+        name = meal_hash['meals'][0]['strMeal']
+        img_url = meal_hash['meals'][0]['strMealThumb']
+        meal_id_string = meal_hash['meals'][0]['idMeal']
+        meal = Meal.create(recipe: recipe, user_id: current_user.id, name: name, img_url: img_url, meal_id_string: meal_id_string)
+        meal.save
+      end
       like = Like.create(meal_string: params[:id], user_id: current_user.id, meal_id: meal.id)
       like.save
     end

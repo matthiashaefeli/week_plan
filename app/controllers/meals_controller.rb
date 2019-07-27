@@ -18,7 +18,8 @@ class MealsController < ApplicationController
       url = ENV['category_url'] + params[:category]
       result = Net::HTTP.get(URI.parse(url))
       meals = JSON.parse(result)
-      @meals = meals['meals']
+      my_meal_array = MyMeal.my_meal_array
+      @meals = meals['meals'] + my_meal_array
     rescue
       @error = 'Sorry: Meal Server Down. Please Come Back Later!'
     end
@@ -26,21 +27,29 @@ class MealsController < ApplicationController
   end
 
   def recipes
-    begin
-      url = ENV['meal_details_url'] + params[:id]
-      result = Net::HTTP.get(URI.parse(url))
-      recipe = JSON.parse(result)
-      @recipe = recipe['meals'][0]
-    rescue
-      @error = 'Sorry: Meal Server Down. Please Come Back Later!'
+    if params[:local]
+      meal = MyMeal.find(params[:id])
+      @recipe = meal.to_hash
+    else
+      begin
+        url = ENV['meal_details_url'] + params[:id]
+        result = Net::HTTP.get(URI.parse(url))
+        recipe = JSON.parse(result)
+        @recipe = recipe['meals'][0]
+      rescue
+        @error = 'Sorry: Meal Server Down. Please Come Back Later!'
+      end
     end
+
+
+
     render partial: 'show_recipe'
   end
 
   def show_details
     m = Meal.find(params[:id])
     meal = JSON.parse(m.recipe)
-    @recipe = meal['meals'][0]
+    @recipe = meal
     render partial: 'show_recipe'
   end
 end
