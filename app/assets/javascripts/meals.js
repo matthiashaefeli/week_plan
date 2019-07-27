@@ -2,11 +2,12 @@
 // add recipe to box
 function get_recipe(event, link) {
   event.preventDefault();
-  let id = link.children('input').val();
+  let local = link.find('.local').val();
+  let id = link.find('.id').val();
   $.ajax({
     url: 'meals/recipes',
     method: 'get',
-    data: { id },
+    data: { local, id },
     success: function(response) {
       open_box(response)
     }

@@ -5,7 +5,7 @@ class CreateMyMeals < ActiveRecord::Migration[5.2]
       t.string :strCategory
       t.string :strArea
       t.string :strInstructions
-      t.string :strMealThumb
+      t.string :strMealThumb, default: ''
       t.string :strIngredient1
       t.string :strIngredient2
       t.string :strIngredient3
@@ -46,6 +46,7 @@ class CreateMyMeals < ActiveRecord::Migration[5.2]
       t.string :strMeasure18
       t.string :strMeasure19
       t.string :strMeasure20
+      t.string :local, default: 'true'
 
       t.timestamps
     end

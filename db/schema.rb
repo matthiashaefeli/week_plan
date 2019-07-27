@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 2019_07_26_152426) do
     t.string "strCategory"
     t.string "strArea"
     t.string "strInstructions"
-    t.string "strMealThumb"
+    t.string "strMealThumb", default: ""
     t.string "strIngredient1"
     t.string "strIngredient2"
     t.string "strIngredient3"
@@ -87,6 +87,7 @@ ActiveRecord::Schema.define(version: 2019_07_26_152426) do
     t.string "strMeasure18"
     t.string "strMeasure19"
     t.string "strMeasure20"
+    t.string "local", default: "true"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

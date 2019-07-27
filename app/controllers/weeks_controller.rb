@@ -17,7 +17,7 @@ class WeeksController < ApplicationController
     end
     ingredients = {}
     @week.meals.each do |m|
-      meal = JSON.parse(m.recipe)['meals'][0]
+      meal = JSON.parse(m.recipe)
       index = 1
       loop do
         i = 'strIngredient' + index.to_s
