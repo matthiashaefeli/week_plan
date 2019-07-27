@@ -17,8 +17,8 @@
         <% end %>
         <div>
           <%= link_to '#', onclick: 'like(event, $(this))' do %>
-            <i class="far fa-heart icons" <% if @likes.include?(m['idMeal']) %> style="display:none;" <% end %>></i>
-            <i class="fas fa-heart icons" <% if !@likes.include?(m['idMeal']) %> style="display:none;" <% end %>></i>
+            <i class="far fa-heart icons" <% if @likes.include?(m['idMeal'].to_s) %> style="display:none;" <% end %>></i>
+            <i class="fas fa-heart icons" <% if !@likes.include?(m['idMeal'].to_s) %> style="display:none;" <% end %>></i>
           <% end %>
         </div>
       </div>
