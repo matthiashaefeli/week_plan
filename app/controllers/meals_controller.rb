@@ -18,7 +18,7 @@ class MealsController < ApplicationController
       url = ENV['category_url'] + params[:category]
       result = Net::HTTP.get(URI.parse(url))
       meals = JSON.parse(result)
-      my_meal_array = MyMeal.my_meal_array
+      my_meal_array = MyMeal.my_meal_array(params[:category])
       @meals = meals['meals'] + my_meal_array
     rescue
       @error = 'Sorry: Meal Server Down. Please Come Back Later!'

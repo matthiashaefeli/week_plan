@@ -6,9 +6,9 @@ class MyMeal < ApplicationRecord
     hash
   end
 
-  def self.my_meal_array
+  def self.my_meal_array(cat)
     my_meals_array = []
-    my_meals = MyMeal.all
+    my_meals = MyMeal.where(strCategory: cat)
     my_meals.each do |m|
       my_meals_array << m.to_hash.select {|k,v| !k.include?('strIngredient') && !k.include?('strMeasure') }
     end

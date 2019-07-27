@@ -4,6 +4,7 @@ class LikesController < ApplicationController
     like = Like.find_by(user_id: current_user.id, meal_string: params[:id])
     if like
       meal = Meal.find(like.meal_id)
+      # check if meal is not used in a week
       meal.destroy
       like.destroy
     else
