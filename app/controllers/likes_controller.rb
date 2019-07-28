@@ -5,7 +5,7 @@ class LikesController < ApplicationController
     if like
       meal = Meal.find(like.meal_id)
       if meal.week != []
-        notice = 'You cant unlike a meal if you have a week with this meal!'
+        notice = "This Meal is included in a week and you need the recipe!"
       else
         notice = 'saved'
         meal.destroy
