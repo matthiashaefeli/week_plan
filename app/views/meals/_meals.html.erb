@@ -8,13 +8,19 @@
       </div>
       <div class="meal_icons">
         <div>
-        <%= link_to '#', onclick: 'get_recipe(event, $(this))' do %>
-          <% if m['local'] %>
-            <input class="local" type="hidden" name="local" value="true">
+          <%= link_to '#', onclick: 'get_recipe(event, $(this))' do %>
+            <% if m['local'] %>
+              <input class="local" type="hidden" name="local" value="true">
+            <% end %>
+            <input class="id" type="hidden" name="id" value="<%= m['idMeal'] %>">
+            <i class="far fa-list-alt icons"></i>
           <% end %>
-          <input class="id" type="hidden" name="id" value="<%= m['idMeal'] %>">
-          <i class="far fa-list-alt"></i></div>
-        <% end %>
+        </div>
+        <div>
+          <% if m['local'] %>
+            <i class="fas fa-star icons"></i>
+          <% end %>
+        </div>
         <div>
           <%= link_to '#', onclick: 'like(event, $(this))' do %>
             <i class="far fa-heart icons" <% if @likes.include?(m['idMeal'].to_s) %> style="display:none;" <% end %>></i>
