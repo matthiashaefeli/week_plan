@@ -22,8 +22,15 @@ function delete_like(event, link) {
     url: '/likes',
     method: 'post',
     data: { id },
-    success: function() {
-      link.parents('.favorite_meal').remove();
+    success: function(response) {
+      if (response.notice == 'saved') {
+        link.parents('.favorite_meal').remove();
+      }else {
+        let p = $('<p></p>')
+        p.text(response.notice)
+        p.insertAfter('#whiteDiv')
+      }
+      
     }
   })
 };

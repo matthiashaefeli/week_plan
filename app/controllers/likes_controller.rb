@@ -4,9 +4,14 @@ class LikesController < ApplicationController
     like = Like.find_by(user_id: current_user.id, meal_string: params[:id])
     if like
       meal = Meal.find(like.meal_id)
-      # check if meal is not used in a week
-      meal.destroy
-      like.destroy
+      if meal.week != []
+        notice = 'You cant unlike a meal if you have a week with this meal!'
+      else
+        notice = 'saved'
+        meal.destroy
+        like.destroy
+      end
+
     else
       if params[:local]
         my_meal = MyMeal.find(params[:id])
@@ -25,9 +30,10 @@ class LikesController < ApplicationController
       end
       like = Like.create(meal_string: params[:id], user_id: current_user.id, meal_id: meal.id)
       like.save
+      notice = 'saved'
     end
     respond_to do |format|
-      format.json { render json: { notice: 'saved' } }
+      format.json { render json: { notice: notice } }
     end
   end
 
