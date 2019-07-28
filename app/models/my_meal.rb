@@ -1,5 +1,7 @@
 class MyMeal < ApplicationRecord
+  has_one_attached :avatar
   validates :strMeal, :strCategory, :strArea, :strInstructions, presence: true
+
   def to_hash
     hash = {}
     self.attributes.each { |k,v| hash[k] = v }

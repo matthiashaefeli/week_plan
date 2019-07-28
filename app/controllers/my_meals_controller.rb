@@ -9,6 +9,9 @@ class MyMealsController < ApplicationController
 
   def create
     @my_meal = MyMeal.new(my_meal_params)
+    if @my_meal.avatar.attached?
+      @my_meal.strMealThumb = url_for(@my_meal.avatar)
+    end
     if @my_meal.save
       redirect_to my_meals_path
     else
