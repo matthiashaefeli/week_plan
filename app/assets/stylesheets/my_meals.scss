@@ -24,3 +24,14 @@
 .ingredients_fields, .measures_fields {
   display: none;
 }
+
+.my_meals img {
+  border-radius: 100px;
+}
+
+.my_meals {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
