@@ -2,13 +2,13 @@
 // All this logic will automatically be available in application.js.
 
 function delete_meal(e) {
-  let id = e.parent('p').find('input').val();
+  let id = e.parent('div').find('input').val();
   $.ajax({
     url: '/my_meals/' + id,
     method: 'delete',
     success: function(response) {
       if (response.notice == 'ok') {
-        e.parent('p').remove();
+        e.parents('.my_meal_container').remove();
       }
     }
   })
