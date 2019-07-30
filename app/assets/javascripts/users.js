@@ -9,4 +9,10 @@ function set_user_info(checkbox) {
       checkbox[0].checked = info
     }
   })
-}
+};
+
+function copy(button) {
+  button.parent().find('.email_array').focus();
+  button.parent().find('.email_array').select();
+  document.execCommand('copy');
+};
