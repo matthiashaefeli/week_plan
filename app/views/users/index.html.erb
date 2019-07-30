@@ -1,0 +1,23 @@
+<div>
+  <table class="user_table">
+    <thead>
+      <tr>
+        <td>User Name</td>
+        <td>Email</td>
+        <td>Info Email</td>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.user_name %></td>
+          <td><%= user.email %></td>
+          <td><%= check_box_tag 'info', 1, user.info == true, onclick: "set_user_info($(this))", id: user.id %> </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div>
+    <p>Users agree with info emails: <input readonly type="text" class="email_array" value="<%= @email_array.join(', ') %>"><button onclick="copy($(this))">copy</button></p>
+  </div>
+</div>
