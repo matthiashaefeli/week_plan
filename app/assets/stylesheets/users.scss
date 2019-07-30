@@ -16,3 +16,17 @@
 .home_login_signup h2 {
   margin-top: 50px;
 }
+
+.user_table {
+  width: 50%;
+  margin: auto;
+  border: 1px solid black;
+}
+
+.user_table thead td {
+  border: 1px solid black;
+}
+
+.user_table tbody td {
+  border: 1px solid grey;
+}
