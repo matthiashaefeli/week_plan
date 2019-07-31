@@ -60,7 +60,12 @@ class MealsController < ApplicationController
     rescue
       @error = 'Sorry: Meal Server Down. Please Come Back Later!'
     end
-    meals_response = !meals.nil? ? meals['meals'] : []
+    
+    if !meals.nil? && !meals['meals'].nil?
+      meals_response = meals['meals']
+    else
+      meals_response = []
+    end
     @meals = my_meal_array_search + meals_response
      render partial: 'meals'
   end
