@@ -1,6 +1,6 @@
 <% if @error %>
   <div><p><%= @error%> </p></div>
-<% else %>
+<% end %>
   <% @meals.each do |m| %>
     <div class="meal">
       <div>
@@ -31,4 +31,4 @@
       <p><%= m['strMeal'] %></p>
     </div>
   <% end %>
-<% end %>
+<%# end %>

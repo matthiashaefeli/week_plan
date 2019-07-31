@@ -1,5 +1,12 @@
 <div class="meals_home">
-  <div class="">
+  <div>
+    <div class="meal_search">
+      <%= form_tag('/meals/search', method: 'get', remote: true, onsubmit: "meal_searcher($(this))") do %>
+        <%= label_tag 'You can look around in the Categories or search:' %>
+        <%= text_field_tag :query %>
+        <%= submit_tag 'search'%>
+      <% end %>
+    </div>
     <div class="category">
       <% if @error %>
         <div><p><%= @error%> </p></div>
@@ -29,6 +36,8 @@
 </div>
 
 <script>
+  $('#query').focus();
+
   $('.category_link').on('click', function(event) {
     event.preventDefault();
     let category = this.innerText.trim();

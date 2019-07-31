@@ -16,4 +16,13 @@ class MyMeal < ApplicationRecord
     end
     my_meals_array
   end
+
+  def self.my_meal_array_search(query)
+    my_meal_array_search = []
+    my_meals = MyMeal.where('"strMeal" LIKE ?', "%#{query}%")
+    my_meals.each do |m|
+      my_meal_array_search << m.to_hash.select {|k,v| !k.include?('strIngredient') && !k.include?('strMeasure') }
+    end
+    my_meal_array_search
+  end
 end
