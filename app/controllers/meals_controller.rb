@@ -40,9 +40,6 @@ class MealsController < ApplicationController
         @error = 'Sorry: Meal Server Down. Please Come Back Later!'
       end
     end
-
-
-
     render partial: 'show_recipe'
   end
 
@@ -51,5 +48,20 @@ class MealsController < ApplicationController
     meal = JSON.parse(m.recipe)
     @recipe = meal
     render partial: 'show_recipe'
+  end
+
+  def search
+    @likes = current_user.likes.map { |l| l.meal_string }
+    my_meal_array_search = MyMeal.my_meal_array_search(params[:query])
+    begin
+      url = ENV['search_url'] + params[:query]
+      result = Net::HTTP.get(URI.parse(url))
+      meals = JSON.parse(result)
+    rescue
+      @error = 'Sorry: Meal Server Down. Please Come Back Later!'
+    end
+    meals_response = !meals.nil? ? meals['meals'] : []
+    @meals = my_meal_array_search + meals_response
+     render partial: 'meals'
   end
 end
