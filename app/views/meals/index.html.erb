@@ -1,7 +1,7 @@
 <div class="meals_home">
   <div>
     <div class="meal_search">
-      <%= form_tag('/meals/search', method: 'get', remote: true, onsubmit: "meal_searcher($(this))") do %>
+      <%= form_tag('/meals/search', method: 'get', remote: true, onsubmit: "meal_searcher($(this))", id: "searchForm") do %>
         <%= label_tag 'You can look around in the Categories or search:' %>
         <%= text_field_tag :query %>
         <%= submit_tag 'search'%>
@@ -27,7 +27,7 @@
       <% end %>
     </div>
     <div id="meals">
-      <p><%= link_to '<< Back', nil , onclick: "$('.category, #meals').toggle();", class: "links back_links" %></p>
+      <p><%= link_to '<< Back', nil , onclick: "$('.category, #meals, #searchForm').toggle();", class: "links back_links" %></p>
       <h2 id="mealTitle"></h2>
       <div id="description"></div>
       <div id="catMeals"></div>
@@ -51,7 +51,7 @@
         $('#mealTitle').html(category);
         $('#description').html(descr);
         $('#catMeals').html(response);
-        $('.category, #meals').toggle();
+        $('.category, #meals, #searchForm').toggle();
       }
     })
   });
