@@ -1,14 +1,36 @@
 <div class="my_meals">
   <% @my_meals.each do |m| %>
     <div class="my_meal_container">
-      <div><%= image_tag(m.strMealThumb, size: '100x100', alt: 'MealImage', class: 'draggable', value: m.id, onerror: "this.onerror=null; this.src='/assets/home.jpg'") %></div>
-      <div><%= m.strMeal %></div>
+      <div><%= image_tag(m.mealThumb, size: '100x100', alt: 'MealImage', class: 'draggable', value: m.id, onerror: "this.onerror=null; this.src='/assets/home.jpg'") %></div>
+      <div class="meal_icons">
+        <div>
+          <%= link_to '#', onclick: 'get_recipe(event, $(this))' do %>
+            <% if m['local'] %>
+              <input class="local" type="hidden" name="local" value="true">
+            <% end %>
+            <input class="id" type="hidden" name="id" value="<%= m['idMeal'] %>">
+            <i class="far fa-list-alt icons"></i>
+          <% end %>
+        </div>
+        <div>
+          <% if m['local'] %>
+            <i class="fas fa-star icons"></i>
+          <% end %>
+        </div>
+        <div>
+          <%= link_to '#', onclick: 'like(event, $(this))' do %>
+            <i class="far fa-heart icons"></i>
+            <i class="fas fa-heart icons"></i>
+          <% end %>
+        </div>
+      </div>
+      <div><%= m.title %></div>
       <div>
         <%= link_to edit_my_meal_path(m.id) do %>
           <i class="fas fa-edit"></i>
         <% end %>
         <i class="far fa-trash-alt delete_week" onclick="delete_meal($(this))"></i>
-        <input type="hidden" name="id" value="<%= m.idMeal %>">
+        <input type="hidden" name="id" value="<%= m.id %>">
       </div>
     </div>
   <% end %>

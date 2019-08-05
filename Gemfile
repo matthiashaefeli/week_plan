@@ -31,8 +31,8 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails', '~> 5.0.5'
 gem 'touchpunch-rails'
 gem 'font-awesome-sass'
-gem "figaro"
-gem "aws-sdk-s3", require: false
+gem 'figaro'
+gem 'aws-sdk-s3', require: false
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'

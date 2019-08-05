@@ -1,17 +1,17 @@
-<%= form_tag(my_meals_path) do |form| %>
+<%= form_for @my_meal do |form| %>
   <table class="create_table">
     <tr>
-      <td><%= label_tag :title %></td>
-      <td><%= text_field_tag :title %></td>
+      <td><%= form.label :title %></td>
+      <td><%= form.text_field :title %></td>
     </tr>
     <tr>
-      <td><%= label_tag :photo %></td>
-      <td><%= file_field_tag :avatar %></td>
+      <td><%= form.label :photo %></td>
+      <td><%= form.file_field :avatar %></td>
     </tr>
     <tr>
-      <td><%= label_tag :category %></td>
+      <td><%= form.label :category %></td>
       <td>
-        <%= select_tag :category, options_for_select(['Beef',
+        <%= form.select :category, options_for_select(['Beef',
                                                         'Chicken',
                                                         'Dessert',
                                                         'Lamb',
@@ -26,23 +26,21 @@
       </td>
     </tr>
     <tr>
-      <td><%= label_tag :instructions %></td>
-      <td><%= text_area_tag :instructions, nil, size: '25x10' %></td>
+      <td><%= form.label :instructions %></td>
+      <td><%= form.text_area :instructions, size: '25x10' %></td>
     </tr>
     <tr id="ingredientsToMeal1">
-      <td><%= label_tag :ingredient %></td>
+      <td><%= form.label :ingredient %></td>
       <td>
-        <%= select_tag "ingredients[]ingredient[foods]", options_for_select(@foods.map(&:name)) %>
-        <%= select_tag "ingredients[]ingredient[measures]", options_for_select(@measures.map(&:name)) %>
-        <%= text_field_tag "ingredients[]ingredient[qty]", nil, size: '5x5', class: 'qty_input' %>
-        <%= submit_tag 'Add more ingredients', onclick: 'more_ingredients(event, $(this))' %>
+        <%= form.select :ingredients, options_for_select(@foods.map(&:name)), {}, { name: 'ingredients[]ingredient[foods]' } %>
+        <%= form.select :ingredients, options_for_select(@measures.map(&:name)), {}, { name: 'ingredients[]ingredient[measures]' } %>
+        <%= form.text_field :ingredients, value: '', name:'ingredients[]ingredient[qty]' %>
+        <%#= form.text_field :ingredients, {size: '5x5', class: 'qty_input', multiple: true, name:'ingredients[]ingredient[qty]'}, nil %>
+        <%= form.submit 'Add more ingredients', onclick: 'more_ingredients(event, $(this))' %>
       </td>
     </tr>
     <tr>
-      
-    </tr>
-    <tr>
-      <td><%= submit_tag %></td>
+      <td><%= form.submit %></td>
     </tr>
   </table>
 <% end %>
@@ -56,7 +54,6 @@
     clone.attr('id', 'ingredientsToMeal' + id);
     button.hide();
     clone.insertAfter(tr);
-    clone.find('.qty_input').val('');
+    clone.find('#my_meal_ingredients').val('');
   }
-
 </script>
