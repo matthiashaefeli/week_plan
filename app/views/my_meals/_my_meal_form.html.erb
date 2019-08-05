@@ -1,23 +1,17 @@
-<%= form_for @my_meal do |form| %>
+<%= form_tag(my_meals_path) do |form| %>
   <table class="create_table">
     <tr>
-      <td><%= form.label :titel %></td>
-      <td><%= form.text_field :strMeal %></td>
-    </tr>
-    <% if @my_meal.avatar.attached? %>
-      <tr>
-        <td></td>
-        <td><%= image_tag(@my_meal.strMealThumb, size: '100x100', alt: 'MealImage', class: 'draggable', value: @my_meal.id, onerror: "this.onerror=null; this.src='/assets/home.jpg'") %></td>
-      </tr>
-    <% end %>
-    <tr>
-      <td><%= form.label :photo %></td>
-      <td><%= form.file_field :avatar %></td>
+      <td><%= label_tag :title %></td>
+      <td><%= text_field_tag :title %></td>
     </tr>
     <tr>
-      <td><%= form.label :categroy %></td>
+      <td><%= label_tag :photo %></td>
+      <td><%= file_field_tag :avatar %></td>
+    </tr>
+    <tr>
+      <td><%= label_tag :category %></td>
       <td>
-        <%= form.select :strCategory, options_for_select(['Beef',
+        <%= select_tag :category, options_for_select(['Beef',
                                                         'Chicken',
                                                         'Dessert',
                                                         'Lamb',
@@ -28,57 +22,41 @@
                                                         'Side',
                                                         'Starter',
                                                         'Vegan',
-                                                        'Vegetarian'], @my_meal.strCategory) %>
+                                                        'Vegetarian'], @my_meal.category) %>
       </td>
     </tr>
     <tr>
-      <td><%= form.label :area %></td>
-      <td><%= form.text_field :strArea %></td>
+      <td><%= label_tag :instructions %></td>
+      <td><%= text_area_tag :instructions, nil, size: '25x10' %></td>
+    </tr>
+    <tr id="ingredientsToMeal1">
+      <td><%= label_tag :ingredient %></td>
+      <td>
+        <%= select_tag "ingredients[]ingredient[foods]", options_for_select(@foods.map(&:name)) %>
+        <%= select_tag "ingredients[]ingredient[measures]", options_for_select(@measures.map(&:name)) %>
+        <%= text_field_tag "ingredients[]ingredient[qty]", nil, size: '5x5', class: 'qty_input' %>
+        <%= submit_tag 'Add more ingredients', onclick: 'more_ingredients(event, $(this))' %>
+      </td>
     </tr>
     <tr>
-      <td><%= form.label :instructions %></td>
-      <td><%= form.text_area :strInstructions, size: '25x10' %></td>
-    </tr>
-    <% counter = 1 %>
-    <% while counter < 21 do %>
-      <%
-      ingredient_label = ('Ingredient' + counter.to_s).to_sym
-      ingredient_input = ('strIngredient' + counter.to_s).to_sym
-      measure_label = ('Measure' + counter.to_s).to_sym
-      measure_input = ('strMeasure' + counter.to_s).to_sym
-      %>
-      <tr class="ingredients_fields">
-        <td><%= form.label ingredient_label %></td>
-        <td><%= form.text_field ingredient_input %></td>
-      </tr>
-      <tr class="measures_fields">
-        <td><%= form.label measure_label %></td>
-        <td><%= form.text_field measure_input %></td>
-      </tr>
-      <% counter += 1 %>
-    <% end %>
-    <tr id="addMoreIngredients">
-      <input type="hidden" name="count" value="0" id="counter">
-      <td><button onclick="add_more_ingredients(event)">Add more Ingredients</button></td>
+      
     </tr>
     <tr>
-      <td><%= form.submit %></td>
+      <td><%= submit_tag %></td>
     </tr>
   </table>
 <% end %>
 <script>
-  $('#my_meal_strMeal').focus();
-  $('.ingredients_fields').first().toggle();
-  $('.measures_fields').first().toggle();
-
-  function add_more_ingredients(event) {
+  function more_ingredients(event, button) {
     event.preventDefault();
-    let count = $('#counter').val()
-    count = parseInt(count) + 1
-    if (count < 21) {
-      $('#counter').val(count)
-      $('.create_table').find('.ingredients_fields:eq(' + count + ')').toggle()
-      $('.create_table').find('.measures_fields:eq(' + count + ')').toggle()
-    }
+    
+    let tr = button.parents('tr');
+    let clone = tr.clone();
+    let id = parseInt(clone.attr('id').replace('ingredientsToMeal', '')) + 1;
+    clone.attr('id', 'ingredientsToMeal' + id);
+    button.hide();
+    clone.insertAfter(tr);
+    clone.find('.qty_input').val('');
   }
+
 </script>

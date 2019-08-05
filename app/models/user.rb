@@ -9,7 +9,7 @@ class User < ApplicationRecord
   before_save :downcase_fields
 
   has_many :likes
-  has_many :meals
+  has_many :my_meals
 
   def downcase_fields
     self.email.downcase!

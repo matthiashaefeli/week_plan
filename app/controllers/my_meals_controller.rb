@@ -5,18 +5,42 @@ class MyMealsController < ApplicationController
 
   def new
     @my_meal = MyMeal.new
+    @foods = Food.all
+    @measures = Measure.all
   end
 
   def create
-    @my_meal = MyMeal.new(my_meal_params)
-    if @my_meal.avatar.attached?
-      @my_meal.strMealThumb = url_for(@my_meal.avatar)
+    my_meal = MyMeal.create(title: params[:title],
+                             category: params[:category],
+                             instructions: params[:instructions])
+    if my_meal.avatar.attached?
+      my_meal.strMealThumb = url_for(@my_meal.avatar)
     end
-    if @my_meal.save
-      redirect_to my_meals_path
-    else
-      render :new, locals: { notice: @my_meal.errors.full_messages }
+
+    if my_meal.save
+      params[:ingredients].each do |i|
+        food = Food.find_by_name(i[:ingredient][:foods])
+        measure = Measure.find_by_name(i[:ingredient][:measures])
+        qty = i[:ingredient][:qty]
+        ingredient = Ingredient.create(food_id: food.id,
+                                       meausure_id: measure.id,
+                                       my_meal_id: my_meal.id,
+                                       qty: qty)
+        ingredient.save
+      end
     end
+
+    binding.pry
+
+
+    # if @my_meal.avatar.attached?
+    #   @my_meal.strMealThumb = url_for(@my_meal.avatar)
+    # end
+    # if @my_meal.save
+    #   redirect_to my_meals_path
+    # else
+    #   render :new, locals: { notice: @my_meal.errors.full_messages }
+    # end
   end
 
   def update

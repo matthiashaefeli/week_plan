@@ -18,4 +18,7 @@ Rails.application.routes.draw do
   resources :likes, only: [:create, :update]
   resources :weeks
   resources :my_meals
+  resources :measures
+  resources :ingredients
+  resources :foods
 end

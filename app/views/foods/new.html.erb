@@ -1,0 +1,9 @@
+<%= form_for @food do |form| %>
+  <table class="create_table">
+    <tr>
+      <td><%= form.label :name %></td>
+      <td><%= form.text_field :name %></td>
+      <td><%= form.submit %></td>
+    </tr>
+  </table>
+<% end %>

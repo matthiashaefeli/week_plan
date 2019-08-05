@@ -1,6 +1,7 @@
 class MyMeal < ApplicationRecord
   has_one_attached :avatar
-  validates :strMeal, :strCategory, :strArea, :strInstructions, presence: true
+  has_many :ingredients
+  validates :title, :category, :instructions, presence: true
 
   def to_hash
     hash = {}
