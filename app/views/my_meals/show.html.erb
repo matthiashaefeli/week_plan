@@ -15,7 +15,7 @@
           <td><%= @my_meal.instructions %></td>
         </tr>
         <% @my_meal.ingredients.each do |i| %>
-          <p><%= i.qty %><%= i.measure.name %><%= i.food.name %></p>
+          <p><%= i.qty %> <%= i.measure.name %>: <%= i.food.name %> <%= i.food.description %></p>
         <% end %>
       </table>
     </div>

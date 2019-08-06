@@ -17,7 +17,7 @@
 function get_recipe(event, id) {
   event.preventDefault();
   $.ajax({
-    url: 'my_meals/' + id,
+    url: '/my_meals/' + id,
     method: 'get',
     success: function(response) {
       open_box(response)

@@ -1,18 +1,4 @@
 
-// add favorite meal to box
-function get_recipe_for_fav_meal(event, link) {
-  event.preventDefault();
-  let id = link.children('input').val();
-  $.ajax({
-    url: '/meals/show_details',
-    method: 'get',
-    data: { id },
-    success: function(response) {
-      open_box(response)
-    }
-  })
-};
-
 // search for meals
 function meal_searcher(form) {
   const query = form.find('#query').val()

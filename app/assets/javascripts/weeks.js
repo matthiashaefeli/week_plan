@@ -35,8 +35,8 @@ function delete_like(event, link) {
   })
 };
 
-function grocery_list(list) {
-  let id = list.parents('table').find('input').val()
+function grocery_list(event, id) {
+  event.preventDefault();
   $.ajax({
     url: 'weeks/' + id,
     method: 'get',

@@ -5,6 +5,7 @@ class CreateIngredients < ActiveRecord::Migration[5.2]
       t.integer :my_meal_id
       t.integer :food_id
       t.integer :qty
+      t.string :description
 
 
       t.timestamps

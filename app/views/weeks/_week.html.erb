@@ -2,19 +2,25 @@
   <table>
     <tr>
       <td>Grocery List:</td>
-      <td><i class="fas fa-list-ol" onclick="grocery_list($(this))"></i></td>
+      <td>
+        <%= link_to '#', onclick: "grocery_list(event, #{week.id})" do %>
+          <i class="fas fa-list-ol"></i>
+        <% end %>
+      </td>
     </tr>
     <tr>
-      <input type='hidden' name="id" value="<%= week.id %>">
       <td>Delete Week:</td>
-      <td><i class="far fa-trash-alt delete_week" onclick="delete_week($(this))"></i></td>
+      <td>
+        <%= link_to '#', onclick: "delete_week(#{week.id})" do %>
+          <i class="far fa-trash-alt delete_week"></i>
+        <% end %>
+      </td>
     </tr>
       <% counter = 0 %>
-      <% week.meals.each do |m| %>
+      <% week.my_meals.each do |m| %>
     <tr>
-      <% meal = JSON.parse(m.recipe) %>
       <td><%= week.days[counter] %>: </td>
-      <td><%= render 'recipe', meal: m %></td>
+      <td><%= render 'meal', meal: m %></td>
       <% counter += 1 %>
     </tr>
     <% end %>

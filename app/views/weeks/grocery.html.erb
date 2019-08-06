@@ -4,10 +4,8 @@
     <% @week.grocery.each do |k, v| %>
       <tr>
         <td><%= k %></td>
-        <% if v.length > 1 %>
-          <td><%= v.join(' ') %></td>
-        <% else %>
-          <td><%= v[0]%> -> <%= v[1] %></td>
+        <% v.each do |k, v| %>
+          <td><%= k %>: <%= v %></td>
         <% end %>
       </tr>
     <% end %>
