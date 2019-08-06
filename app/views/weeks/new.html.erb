@@ -13,8 +13,8 @@
   </div>
 </div>
 <div id="catMeals">
-  <% current_user.meals.each do |m| %>
-    <%= render 'favorite_meals', meal: m %>
+  <% current_user.my_meals.each do |m| %>
+    <%= render 'favorite_meals', m: m %>
   <% end %>
 </div>
 <script>
