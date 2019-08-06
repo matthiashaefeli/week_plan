@@ -1,6 +1,7 @@
 class MyMeal < ApplicationRecord
-  has_one_attached :avatar
-  has_many :ingredients
+  has_one_attached :avatar, dependent: :destroy
+  has_many :ingredients, dependent: :destroy
+  has_one :like, dependent: :destroy
   validates :title, :category, :instructions, presence: true
 
   def to_hash

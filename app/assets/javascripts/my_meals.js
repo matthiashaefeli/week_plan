@@ -13,3 +13,15 @@ function delete_meal(e) {
     }
   })
 };
+
+// add recipe to box
+function get_recipe(event, id) {
+  event.preventDefault();
+  $.ajax({
+    url: 'my_meals/' + id,
+    method: 'get',
+    success: function(response) {
+      open_box(response)
+    }
+  })
+};

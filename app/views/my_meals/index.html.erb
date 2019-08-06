@@ -4,23 +4,14 @@
       <div><%= image_tag(m.mealThumb, size: '100x100', alt: 'MealImage', class: 'draggable', value: m.id, onerror: "this.onerror=null; this.src='/assets/home.jpg'") %></div>
       <div class="meal_icons">
         <div>
-          <%= link_to '#', onclick: 'get_recipe(event, $(this))' do %>
-            <% if m['local'] %>
-              <input class="local" type="hidden" name="local" value="true">
-            <% end %>
-            <input class="id" type="hidden" name="id" value="<%= m['idMeal'] %>">
+          <%= link_to '#', onclick: "get_recipe(event, #{m.id})" do %>
             <i class="far fa-list-alt icons"></i>
           <% end %>
         </div>
         <div>
-          <% if m['local'] %>
-            <i class="fas fa-star icons"></i>
-          <% end %>
-        </div>
-        <div>
-          <%= link_to '#', onclick: 'like(event, $(this))' do %>
-            <i class="far fa-heart icons"></i>
-            <i class="fas fa-heart icons"></i>
+          <%= link_to '#', onclick: "like(event, #{m.id}, $(this))" do %>
+            <i class="far fa-heart icons" <% if !m.like.nil? %> style="display:none;" <% end %>></i>
+            <i class="fas fa-heart icons" <% if m.like.nil? %> style="display:none;" <% end %>></i>
           <% end %>
         </div>
       </div>

@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 2019_08_05_173114) do
   end
 
   create_table "ingredients", force: :cascade do |t|
-    t.integer "meausure_id"
+    t.integer "measure_id"
     t.integer "my_meal_id"
     t.integer "food_id"
     t.integer "qty"
@@ -53,9 +53,7 @@ ActiveRecord::Schema.define(version: 2019_08_05_173114) do
 
   create_table "likes", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "meal_id"
-    t.string "meal_string"
-    t.boolean "week_plan", default: false
+    t.integer "my_meal_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
