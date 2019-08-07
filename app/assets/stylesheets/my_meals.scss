@@ -51,5 +51,93 @@
   justify-content: space-around;
 }
 
+.meals_home {
+  width: 80%;
+  margin: auto;
+}
+
+.categories {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.category {
+  margin: 10px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.category div {
+    margin: 30px;
+}
+
+.category_desc {
+  display: none;
+}
+
+#description {
+  margin: 30px auto;
+  // max-width: 60vw;
+}
+
+#meals {
+  display: none;
+}
+
+#catMeals {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+#catMeals img {
+  border-radius: 100px;
+}
+
+.meal, .favorite_meal {
+  min-width: 165px;
+  max-width: 165px;
+  margin: 10px;
+}
+
+.select_meal {
+  text-align: center;
+  background-color: grey;
+}
+
+.icons {
+  color: blue;
+}
+
+.meal_icons {
+  width: 60%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.field_show_recipe_details {
+  min-width: 170px;
+  vertical-align: top;
+}
+
+.category_link {
+  text-decoration: none;
+  color: black;
+}
+
+.back_links {
+  color: black;
+}
+
+.meal_search {
+  width: 80%;
+  margin: 30px auto 30px auto;
+}
 
 
