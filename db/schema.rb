@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 2019_08_06_215205) do
     t.integer "my_meal_id"
     t.integer "food_id"
     t.integer "qty"
+    t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

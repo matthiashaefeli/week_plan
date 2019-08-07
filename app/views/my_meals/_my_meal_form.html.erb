@@ -29,13 +29,37 @@
       <td><%= form.label :instructions %></td>
       <td><%= form.text_area :instructions, size: '25x10' %></td>
     </tr>
+    <% @my_meal.ingredients.each do |i| %>
+      <tr>
+        <td>
+          <%= link_to '#', onclick: "delete_ingredient(event, #{i.id}, $(this))" do %>
+            <i class="far fa-trash-alt"></i>
+          <% end %>
+        </td>
+        <td><%= i.food.name %>, <%= i.measure.name %>, <%= i.qty %>, <%= i.description %></td>
+      </tr>
+    <% end %>
     <tr id="ingredientsToMeal1">
       <td><%= form.label :ingredient %></td>
       <td>
-        <%= form.select :ingredients, options_for_select(@foods.map(&:name)), {}, { name: 'ingredients[]ingredient[foods]' } %>
-        <%= form.select :ingredients, options_for_select(@measures.map(&:name)), {}, { name: 'ingredients[]ingredient[measures]' } %>
-        <%= form.text_field :ingredients, value: '', name:'ingredients[]ingredient[qty]' %>
-        <%#= form.text_field :ingredients, {size: '5x5', class: 'qty_input', multiple: true, name:'ingredients[]ingredient[qty]'}, nil %>
+        <table>
+          <tr>
+            <td>Ingredient</td>
+            <td><%= form.select :ingredients, options_for_select(@foods.map(&:name).unshift('')), {}, { name: 'ingredients[]ingredient[foods]' } %></td>
+          </tr>
+          <tr>
+            <td>Measure</td>
+            <td><%= form.select :ingredients, options_for_select(@measures.map(&:name).unshift('')), {}, { name: 'ingredients[]ingredient[measures]' } %></td>
+          </tr>
+          <tr>
+            <td>Qty</td>
+            <td><%= form.text_field :ingredients, value: '', name: 'ingredients[]ingredient[qty]', size: '5x5' %></td>
+          </tr>
+          <tr>
+            <td>Desc</td>
+            <td><%= form.text_field :ingredients, value: '', name: 'ingredients[]ingredient[description]' %></td>
+          </tr>
+        </table>
         <%= form.submit 'Add more ingredients', onclick: 'more_ingredients(event, $(this))' %>
       </td>
     </tr>
@@ -45,15 +69,5 @@
   </table>
 <% end %>
 <script>
-  function more_ingredients(event, button) {
-    event.preventDefault();
-    
-    let tr = button.parents('tr');
-    let clone = tr.clone();
-    let id = parseInt(clone.attr('id').replace('ingredientsToMeal', '')) + 1;
-    clone.attr('id', 'ingredientsToMeal' + id);
-    button.hide();
-    clone.insertAfter(tr);
-    clone.find('#my_meal_ingredients').val('');
-  }
+
 </script>

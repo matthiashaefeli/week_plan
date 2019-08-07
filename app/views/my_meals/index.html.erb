@@ -1,3 +1,4 @@
+<div id="myMeals"></div>
 <div class="my_meals">
   <% @my_meals.each do |m| %>
     <div class="my_meal_container">
@@ -20,8 +21,9 @@
         <%= link_to edit_my_meal_path(m.id) do %>
           <i class="fas fa-edit"></i>
         <% end %>
-        <i class="far fa-trash-alt delete_week" onclick="delete_meal($(this))"></i>
-        <input type="hidden" name="id" value="<%= m.id %>">
+        <%= link_to '#', onclick: "delete_meal(event, #{m.id}, $(this))" do %>
+          <i class="far fa-trash-alt delete_week"></i>
+        <% end %>
       </div>
     </div>
   <% end %>
