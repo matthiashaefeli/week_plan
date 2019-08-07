@@ -1,9 +1,0 @@
-<div class="week_meals">
-  <div class="week_meals">
-    <%= link_to '#', onclick: "get_recipe_for_fav_meal(event, $(this))" do %>
-      <input type="hidden" name="id" value="<%= meal.id %>">
-      <i class="far fa-list-alt"></i>
-    <% end %>
-  </div>
-  <div class="week_meals"><%= meal.name %></div>
-</div>

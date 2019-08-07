@@ -1,23 +1,17 @@
 <%= form_for @my_meal do |form| %>
   <table class="create_table">
     <tr>
-      <td><%= form.label :titel %></td>
-      <td><%= form.text_field :strMeal %></td>
+      <td><%= form.label :title %></td>
+      <td><%= form.text_field :title %></td>
     </tr>
-    <% if @my_meal.avatar.attached? %>
-      <tr>
-        <td></td>
-        <td><%= image_tag(@my_meal.strMealThumb, size: '100x100', alt: 'MealImage', class: 'draggable', value: @my_meal.id, onerror: "this.onerror=null; this.src='/assets/home.jpg'") %></td>
-      </tr>
-    <% end %>
     <tr>
       <td><%= form.label :photo %></td>
       <td><%= form.file_field :avatar %></td>
     </tr>
     <tr>
-      <td><%= form.label :categroy %></td>
+      <td><%= form.label :category %></td>
       <td>
-        <%= form.select :strCategory, options_for_select(['Beef',
+        <%= form.select :category, options_for_select(['Beef',
                                                         'Chicken',
                                                         'Dessert',
                                                         'Lamb',
@@ -28,38 +22,46 @@
                                                         'Side',
                                                         'Starter',
                                                         'Vegan',
-                                                        'Vegetarian'], @my_meal.strCategory) %>
+                                                        'Vegetarian'], @my_meal.category) %>
       </td>
     </tr>
     <tr>
-      <td><%= form.label :area %></td>
-      <td><%= form.text_field :strArea %></td>
-    </tr>
-    <tr>
       <td><%= form.label :instructions %></td>
-      <td><%= form.text_area :strInstructions, size: '25x10' %></td>
+      <td><%= form.text_area :instructions, size: '25x10' %></td>
     </tr>
-    <% counter = 1 %>
-    <% while counter < 21 do %>
-      <%
-      ingredient_label = ('Ingredient' + counter.to_s).to_sym
-      ingredient_input = ('strIngredient' + counter.to_s).to_sym
-      measure_label = ('Measure' + counter.to_s).to_sym
-      measure_input = ('strMeasure' + counter.to_s).to_sym
-      %>
-      <tr class="ingredients_fields">
-        <td><%= form.label ingredient_label %></td>
-        <td><%= form.text_field ingredient_input %></td>
+    <% @my_meal.ingredients.each do |i| %>
+      <tr>
+        <td>
+          <%= link_to '#', onclick: "delete_ingredient(event, #{i.id}, $(this))" do %>
+            <i class="far fa-trash-alt"></i>
+          <% end %>
+        </td>
+        <td><%= i.food.name %>, <%= i.measure.name %>, <%= i.qty %>, <%= i.description %></td>
       </tr>
-      <tr class="measures_fields">
-        <td><%= form.label measure_label %></td>
-        <td><%= form.text_field measure_input %></td>
-      </tr>
-      <% counter += 1 %>
     <% end %>
-    <tr id="addMoreIngredients">
-      <input type="hidden" name="count" value="0" id="counter">
-      <td><button onclick="add_more_ingredients(event)">Add more Ingredients</button></td>
+    <tr id="ingredientsToMeal1">
+      <td><%= form.label :ingredient %></td>
+      <td>
+        <table>
+          <tr>
+            <td>Ingredient</td>
+            <td><%= form.select :ingredients, options_for_select(@foods.map(&:name).unshift('')), {}, { name: 'ingredients[]ingredient[foods]' } %></td>
+          </tr>
+          <tr>
+            <td>Measure</td>
+            <td><%= form.select :ingredients, options_for_select(@measures.map(&:name).unshift('')), {}, { name: 'ingredients[]ingredient[measures]' } %></td>
+          </tr>
+          <tr>
+            <td>Qty</td>
+            <td><%= form.text_field :ingredients, value: '', name: 'ingredients[]ingredient[qty]', size: '5x5' %></td>
+          </tr>
+          <tr>
+            <td>Desc</td>
+            <td><%= form.text_field :ingredients, value: '', name: 'ingredients[]ingredient[description]' %></td>
+          </tr>
+        </table>
+        <%= form.submit 'Add more ingredients', onclick: 'more_ingredients(event, $(this))' %>
+      </td>
     </tr>
     <tr>
       <td><%= form.submit %></td>
@@ -67,18 +69,5 @@
   </table>
 <% end %>
 <script>
-  $('#my_meal_strMeal').focus();
-  $('.ingredients_fields').first().toggle();
-  $('.measures_fields').first().toggle();
 
-  function add_more_ingredients(event) {
-    event.preventDefault();
-    let count = $('#counter').val()
-    count = parseInt(count) + 1
-    if (count < 21) {
-      $('#counter').val(count)
-      $('.create_table').find('.ingredients_fields:eq(' + count + ')').toggle()
-      $('.create_table').find('.measures_fields:eq(' + count + ')').toggle()
-    }
-  }
 </script>

@@ -1,18 +1,25 @@
-<div class="favorite_meal">
-  <div><%= image_tag(meal.img_url, size: '100x100', alt: 'MealImage', class: 'draggable', value: meal.id, onerror: "this.onerror=null; this.src='/assets/home.jpg'") %></div>
+<div class="my_meal_container">
+  <div><%= image_tag(m.mealThumb, size: '100x100', alt: 'MealImage', class: 'draggable', value: m.id, onerror: "this.onerror=null; this.src='/assets/home.jpg'") %></div>
   <div class="meal_icons">
     <div>
-      <%= link_to '#', onclick: "get_recipe_for_fav_meal(event, $(this))" do %>
-        <input type="hidden" name="id" value="<%= meal.id %>">
-        <i class="far fa-list-alt"></i>
+      <%= link_to '#', onclick: "get_recipe(event, #{m.id})" do %>
+        <i class="far fa-list-alt icons"></i>
       <% end %>
     </div>
     <div>
-      <%= link_to '#', onclick: 'delete_like(event, $(this))' do %>
-        <input type="hidden" name="id" value="<%= meal.meal_id_string %>">
-        <i class="fas fa-heart icons"></i>
+      <%= link_to '#', onclick: "like(event, #{m.id}, $(this), true)" do %>
+        <i class="far fa-heart icons" <% if !m.like.nil? %> style="display:none;" <% end %>></i>
+        <i class="fas fa-heart icons" <% if m.like.nil? %> style="display:none;" <% end %>></i>
       <% end %>
     </div>
   </div>
-  <div><%= meal.name %></div>
+  <div><%= m.title %></div>
+  <div>
+    <%= link_to edit_my_meal_path(m.id) do %>
+      <i class="fas fa-edit"></i>
+    <% end %>
+    <%= link_to '#', onclick: "delete_meal(event, #{m.id}, $(this))" do %>
+      <i class="far fa-trash-alt delete_week"></i>
+    <% end %>
+  </div>
 </div>

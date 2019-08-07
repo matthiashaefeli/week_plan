@@ -1,5 +1,6 @@
 <h2>Create My Week Plan</h2>
 <div id="whiteDiv"></div>
+<div id="myMeals"></div>
 <div id="success_text"></div>
 <div class="week_boxes" id="stickyWeek">
   <div class="week_box"><p>Monday</p></div>
@@ -13,8 +14,8 @@
   </div>
 </div>
 <div id="catMeals">
-  <% current_user.meals.each do |m| %>
-    <%= render 'favorite_meals', meal: m %>
+  <% current_user.my_meals.each do |m| %>
+    <%= render 'favorite_meals', m: m %>
   <% end %>
 </div>
 <script>

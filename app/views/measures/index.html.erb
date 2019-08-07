@@ -1,0 +1,4 @@
+<%= link_to 'New Measure', new_measure_path %>
+<% @measures.each do |m| %>
+  <p><%= m.name %></p>
+<% end %>

@@ -1,0 +1,8 @@
+<div class="week_meals">
+  <div class="week_meals">
+    <%= link_to '#', onclick: "get_recipe(event, #{meal.id})" do %>
+      <i class="far fa-list-alt"></i>
+    <% end %>
+  </div>
+  <div class="week_meals"><%= meal.title %></div>
+</div>
