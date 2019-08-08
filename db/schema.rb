@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 2019_08_06_215205) do
     t.integer "measure_id"
     t.integer "my_meal_id"
     t.integer "food_id"
-    t.integer "qty"
+    t.decimal "qty", precision: 4, scale: 3
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -55,16 +55,6 @@ ActiveRecord::Schema.define(version: 2019_08_06_215205) do
   create_table "likes", force: :cascade do |t|
     t.integer "user_id"
     t.integer "my_meal_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "meals", force: :cascade do |t|
-    t.text "recipe"
-    t.integer "user_id"
-    t.string "name"
-    t.string "img_url"
-    t.string "meal_id_string"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
