@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 2019_08_06_215205) do
     t.integer "measure_id"
     t.integer "my_meal_id"
     t.integer "food_id"
-    t.decimal "qty", precision: 4, scale: 3
+    t.string "qty"
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
