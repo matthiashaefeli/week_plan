@@ -17,7 +17,7 @@
 }
 
 .create_table {
-  width: 80%;
+  width: 85%;
   margin: auto;
 }
 
@@ -29,7 +29,20 @@
   border-radius: 100px;
 }
 
+.my_meals_container {
+  margin: 30px 10px;
+  display: flex;
+  flex-direction: row;
+}
+
+.my_meals_search {
+  width: 15%;
+  display: flex;
+  flex-direction: column;
+}
+
 .my_meals {
+  width: 80%;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -37,10 +50,58 @@
 }
 
 .my_meal_container {
+  min-width: 165px;
+  max-width: 165px;
+  margin: 15px;
   text-align: center;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
+}
+
+.my_meal_category {
+  display: none;
+}
+
+#myInputCategory {
+  text-align: center;
+  width: 120px;
+  margin: 10px;
+  height: 110px;
+  overflow-y: scroll;
+  border: 1px solid grey;
+}
+
+#myInputCategory p {
+  cursor: pointer;
+}
+
+#myInputAll {
+  margin: 10px;
+  border: 1px solid grey;
+  width: 120px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.search_label {
+  margin: 0 10px;
+}
+
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: rgba(0,0,0,.5);
+  -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+}
+
+#myInputTitle {
+  width: 120px;
+  margin: 10px;
 }
 
 .meal_icons {
@@ -139,5 +200,3 @@
   width: 80%;
   margin: 30px auto 30px auto;
 }
-
-

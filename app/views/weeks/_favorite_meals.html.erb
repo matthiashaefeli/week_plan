@@ -14,12 +14,14 @@
     </div>
   </div>
   <div><%= m.title %></div>
-  <div>
-    <%= link_to edit_my_meal_path(m.id) do %>
-      <i class="fas fa-edit"></i>
-    <% end %>
-    <%= link_to '#', onclick: "delete_meal(event, #{m.id}, $(this))" do %>
-      <i class="far fa-trash-alt delete_week"></i>
-    <% end %>
-  </div>
+  <% if current_user.super %>
+    <div>
+      <%= link_to edit_my_meal_path(m.id) do %>
+        <i class="fas fa-edit"></i>
+      <% end %>
+      <%= link_to '#', onclick: "delete_meal(event, #{m.id}, $(this))" do %>
+        <i class="far fa-trash-alt delete_week"></i>
+      <% end %>
+    </div>
+  <% end %>
 </div>
