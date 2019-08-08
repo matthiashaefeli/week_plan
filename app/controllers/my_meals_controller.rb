@@ -5,8 +5,6 @@ class MyMealsController < ApplicationController
 
   def new
     @my_meal = MyMeal.new
-    @foods = Food.all
-    @measures = Measure.all
   end
 
   def create
@@ -28,7 +26,9 @@ class MyMealsController < ApplicationController
                                         my_meal_id: @my_meal.id,
                                         qty: qty,
                                         description: description)
-          ingredient.save
+          if !ingredient.save
+            render :new, locals: { notice: ingredient.errors.full_messages } and return
+          end
         else
           # check how to handle the error
         end

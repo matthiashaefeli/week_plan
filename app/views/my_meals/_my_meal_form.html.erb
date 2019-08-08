@@ -45,11 +45,11 @@
         <table>
           <tr>
             <td>Ingredient</td>
-            <td><%= form.select :ingredients, options_for_select(@foods.map(&:name).unshift('')), {}, { name: 'ingredients[]ingredient[foods]' } %></td>
+            <td><%= form.select :ingredients, options_for_select(Food.all.map(&:name).unshift('')), {}, { name: 'ingredients[]ingredient[foods]' } %></td>
           </tr>
           <tr>
             <td>Measure</td>
-            <td><%= form.select :ingredients, options_for_select(@measures.map(&:name).unshift('')), {}, { name: 'ingredients[]ingredient[measures]' } %></td>
+            <td><%= form.select :ingredients, options_for_select(Measure.all.map(&:name).unshift('')), {}, { name: 'ingredients[]ingredient[measures]' } %></td>
           </tr>
           <tr>
             <td>Qty</td>

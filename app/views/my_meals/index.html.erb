@@ -1,30 +1,78 @@
 <div id="myMeals"></div>
-<div class="my_meals">
-  <% @my_meals.each do |m| %>
-    <div class="my_meal_container">
-      <div><%= image_tag(m.mealThumb, size: '100x100', alt: 'MealImage', class: 'draggable', value: m.id, onerror: "this.onerror=null; this.src='/assets/home.jpg'") %></div>
-      <div class="meal_icons">
-        <div>
-          <%= link_to '#', onclick: "get_recipe(event, #{m.id})" do %>
-            <i class="far fa-list-alt icons"></i>
-          <% end %>
-        </div>
-        <div>
-          <%= link_to '#', onclick: "like(event, #{m.id}, $(this))" do %>
-            <i class="far fa-heart icons" <% if !m.like.nil? %> style="display:none;" <% end %>></i>
-            <i class="fas fa-heart icons" <% if m.like.nil? %> style="display:none;" <% end %>></i>
-          <% end %>
-        </div>
-      </div>
-      <div><%= m.title %></div>
-      <div>
-        <%= link_to edit_my_meal_path(m.id) do %>
-          <i class="fas fa-edit"></i>
-        <% end %>
-        <%= link_to '#', onclick: "delete_meal(event, #{m.id}, $(this))" do %>
-          <i class="far fa-trash-alt delete_week"></i>
-        <% end %>
-      </div>
+<div class="my_meals_container">
+  <div class="my_meals_search">
+    <div id="myInputAll">Show All</div>
+    <div class="search_label">Search By Title</div>
+    <div><input id="myInputTitle" type="text" placeholder="Search..."></div>
+    <div class="search_label">Search By Category</div>
+    <div id="myInputCategory">
+      <p class="category_search">Beef</p>
+      <p class="category_search">Chicken</p>
+      <p class="category_search">Dessert</p>
+      <p class="category_search">Lamb</p>
+      <p class="category_search">Miscellaneous</p>
+      <p class="category_search">Pasta</p>
+      <p class="category_search">Pork</p>
+      <p class="category_search">Seafood</p>
+      <p class="category_search">Side</p>
+      <p class="category_search">Starter</p>
+      <p class="category_search">Vegan</p>
+      <p class="category_search">Vegetarian</p>
     </div>
-  <% end %>
+  </div>
+  <div class="my_meals">
+    <% @my_meals.each do |m| %>
+      <div class="my_meal_container">
+        <div><%= image_tag(m.mealThumb, size: '100x100', alt: 'MealImage', class: 'draggable', value: m.id, onerror: "this.onerror=null; this.src='/assets/home.jpg'") %></div>
+        <div class="meal_icons">
+          <div>
+            <%= link_to '#', onclick: "get_recipe(event, #{m.id})" do %>
+              <i class="far fa-list-alt icons"></i>
+            <% end %>
+          </div>
+          <div>
+            <%= link_to '#', onclick: "like(event, #{m.id}, $(this))" do %>
+              <i class="far fa-heart icons" <% if !m.like.nil? %> style="display:none;" <% end %>></i>
+              <i class="fas fa-heart icons" <% if m.like.nil? %> style="display:none;" <% end %>></i>
+            <% end %>
+          </div>
+        </div>
+        <div class="my_meal_title"><%= m.title %></div>
+        <div class="my_meal_category"><%= m.category %></div>
+        <% if current_user.super %>
+          <div>
+            <%= link_to edit_my_meal_path(m.id) do %>
+              <i class="fas fa-edit"></i>
+            <% end %>
+            <%= link_to '#', onclick: "delete_meal(event, #{m.id}, $(this))" do %>
+              <i class="far fa-trash-alt delete_week"></i>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
 </div>
+<script>
+  $('#myInputTitle').on('keyup', function() {
+    let val = $(this).val().toLowerCase();
+    $('.my_meal_title').filter(function() {
+      $(this).parents('.my_meal_container').toggle($(this).text().toLowerCase().indexOf(val) > -1)
+    })
+  })
+
+  $('.category_search').on('click', function() {
+    $('.my_meal_container').show();
+    let val = $(this).text().toLowerCase();
+    $('.my_meal_category').filter(function() {
+      $(this).parents('.my_meal_container').toggle($(this).text().toLowerCase().indexOf(val) > -1)
+    })
+  })
+
+  $('#myInputAll').on('click', function() {
+    $('.my_meal_container').show();
+    $('#myInputTitle').val('');
+  })
+
+
+</script>
