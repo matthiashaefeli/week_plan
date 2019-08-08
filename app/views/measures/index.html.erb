@@ -1,4 +1,15 @@
 <%= link_to 'New Measure', new_measure_path %>
-<% @measures.each do |m| %>
-  <p><%= m.name %></p>
-<% end %>
+<div><input id="measureSearch" type="text" placeholder="Search..."></div>
+<div>
+  <% @measures.each do |m| %>
+    <p class="measure_search"><%= m.name %></p>
+  <% end %>
+</div>
+<script>
+  $('#measureSearch').on('keyup', function() {
+    let val = $(this).val().toLowerCase();
+    $('.measure_search').filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(val) > -1)
+    })
+  })
+</script>
