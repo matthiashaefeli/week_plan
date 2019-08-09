@@ -40,6 +40,9 @@
         <td><%= i.food.name %>, <%= i.measure.name %>, <%= i.qty %>, <%= i.description %></td>
       </tr>
     <% end %>
+    <tr>
+      <td><%= form.submit %></td>
+    </tr>
     <tr id="ingredientsToMeal1">
       <td><%= form.label :ingredient %></td>
       <td>
@@ -79,9 +82,6 @@
         </table>
         <%= form.submit 'Add more ingredients', onclick: 'more_ingredients(event, $(this))', class: 'add_more_ingredients' %>
       </td>
-    </tr>
-    <tr>
-      <td><%= form.submit %></td>
     </tr>
   </table>
 <% end %>

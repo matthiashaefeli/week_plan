@@ -49,8 +49,6 @@ function more_ingredients(event, button) {
   event.preventDefault();
   let tr = button.parents('tr');
   let clone = tr.clone();
-  tr.find('input').attr('disabled', true)
-  tr.find('select').attr('disabled', true)
   tr.find('#foodSearch').remove();
   tr.find('#measureSearch').remove();
   let id = parseInt(clone.attr('id').replace('ingredientsToMeal', '')) + 1;
