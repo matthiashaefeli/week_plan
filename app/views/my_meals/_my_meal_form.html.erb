@@ -28,7 +28,7 @@
     </tr>
     <tr>
       <td><%= form.label :instructions %></td>
-      <td><%= form.text_area :instructions, size: '25x10' %></td>
+      <td><%= form.text_area :instructions, size: '50x15' %></td>
     </tr>
     <% @my_meal.ingredients.each do |i| %>
       <tr>
@@ -77,7 +77,7 @@
             <td><%= form.text_field :ingredients, value: '', name: 'ingredients[]ingredient[description]' %></td>
           </tr>
         </table>
-        <%= form.submit 'Add more ingredients', onclick: 'more_ingredients(event, $(this))' %>
+        <%= form.submit 'Add more ingredients', onclick: 'more_ingredients(event, $(this))', class: 'add_more_ingredients' %>
       </td>
     </tr>
     <tr>
