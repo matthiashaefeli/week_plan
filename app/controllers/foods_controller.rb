@@ -8,15 +8,9 @@ class FoodsController < ApplicationController
   end
 
   def create
-    @food = Food.create(food_params)
+    @food = Food.create(name: params[:food][:name].gsub(' ', '_'))
     if @food.save
       redirect_to foods_path
     end
-  end
-
-  private
-
-  def food_params
-    params.require(:food).permit(:name)
   end
 end

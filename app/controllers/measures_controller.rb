@@ -8,15 +8,9 @@ class MeasuresController < ApplicationController
   end
 
   def create
-    @measure = Measure.create(measure_params)
+    @measure = Measure.create(name: params[:measure][:name].gsub(' ', '_'))
     if @measure.save
       redirect_to measures_path
     end
-  end
-
-  private
-
-  def measure_params
-    params.require(:measure).permit(:name)
   end
 end
