@@ -52,6 +52,6 @@ function more_ingredients(event, button) {
   let id = parseInt(clone.attr('id').replace('ingredientsToMeal', '')) + 1;
   clone.attr('id', 'ingredientsToMeal' + id);
   button.hide();
-  clone.insertAfter(tr);
+  clone.insertBefore(tr);
   clone.find('#my_meal_ingredients').val('');
 }
