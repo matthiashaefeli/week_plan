@@ -30,3 +30,17 @@
 .user_table tbody td {
   border: 1px solid grey;
 }
+
+.user_home {
+  text-align: center;
+  width: 90%;
+  margin: auto;
+  height: 60vh;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+}
+
+#userSearch {
+  margin: 20px;
+}

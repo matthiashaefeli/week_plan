@@ -1,4 +1,18 @@
-<%= link_to 'New Measure', new_measure_path %>
-<% @measures.each do |m| %>
-  <p><%= m.name %></p>
-<% end %>
+<div class="mf_home">
+  <div><%= link_to 'Add New Measure', new_measure_path %></div>
+  <div><input id="measureSearch" type="text" placeholder="Search..."></div>
+  <div class="mf_container">
+    <% @measures.each do |m| %>
+      <p class="measure_search"><%= m.name %></p>
+    <% end %>
+  </div>
+</div>
+<script>
+  $('#measureSearch').focus();
+  $('#measureSearch').on('keyup', function() {
+    let val = $(this).val().toLowerCase();
+    $('.measure_search').filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(val) > -1)
+    })
+  })
+</script>

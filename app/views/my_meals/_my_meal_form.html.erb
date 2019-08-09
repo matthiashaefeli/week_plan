@@ -46,11 +46,27 @@
         <table>
           <tr>
             <td>Ingredient</td>
-            <td><%= form.select :ingredients, options_for_select(Food.all.map(&:name).unshift('')), {}, { name: 'ingredients[]ingredient[foods]' } %></td>
+            <td>
+              <input id="foodSearch" type="text" placeholder="Search...">
+              <select name="ingredients[]ingredient[foods]">
+                <option value=""></option>
+                 <%= Food.order(name: :asc).each do |f| %>
+                  <option class="ingredients_food" value=<%= f.name %>><%= f.name %></option>
+                 <% end %>
+              </select>
+            </td>
           </tr>
           <tr>
             <td>Measure</td>
-            <td><%= form.select :ingredients, options_for_select(Measure.all.map(&:name).unshift('')), {}, { name: 'ingredients[]ingredient[measures]' } %></td>
+            <td>
+              <input id="measureSearch" type="text" placeholder="Search...">
+              <select name="ingredients[]ingredient[measures]">
+                <option value=""></option>
+                 <%= Measure.order(name: :asc).each do |m| %>
+                  <option class="ingredients_measure" value=<%= m.name %>><%= m.name %></option>
+                 <% end %>
+              </select>
+            </td>
           </tr>
           <tr>
             <td>Qty</td>
@@ -70,5 +86,17 @@
   </table>
 <% end %>
 <script>
+  $('#foodSearch').on('keyup', function() {
+    let val = $(this).val().toLowerCase();
+    $('.ingredients_food').filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(val) > -1)
+    })
+  });
 
+  $('#measureSearch').on('keyup', function() {
+    let val = $(this).val().toLowerCase();
+    $('.ingredients_measure').filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(val) > -1)
+    })
+  });
 </script>

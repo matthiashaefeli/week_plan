@@ -1,4 +1,18 @@
-<%= link_to 'New Ingredient', new_food_path %>
-<% @foods.each do |f| %>
-  <p><%= f.name %></p>
-<% end %>
+<div class="mf_home">
+  <div><%= link_to 'Add New Ingredient', new_food_path %></div>
+  <div><input id="foodSearch" type="text" placeholder="Search..."></div>
+  <div class="mf_container">
+    <% @foods.each do |f| %>
+      <p class="food_search"><%= f.name %></p>
+    <% end %>
+  </div>
+</div>
+<script>
+  $('#foodSearch').focus();
+  $('#foodSearch').on('keyup', function() {
+    let val = $(this).val().toLowerCase();
+    $('.food_search').filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(val) > -1)
+    })
+  })
+</script>

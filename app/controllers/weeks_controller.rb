@@ -19,11 +19,11 @@ class WeeksController < ApplicationController
     @week.my_meals.each do |m|
       m.ingredients.each do |i|
         if ingredients_hash.key?(i.food.name) &&  ingredients_hash[i.food.name].key?(i.measure.name)
-          ingredients_hash[i.food.name][i.measure.name] += i.qty
+          ingredients_hash[i.food.name][i.measure.name] += i.qty.to_f
         elsif ingredients_hash.key?(i.food.name)
-          ingredients_hash[i.food.name][i.measure.name] = i.qty
+          ingredients_hash[i.food.name][i.measure.name] = i.qty.to_f
         else
-          ingredients_hash[i.food.name] =  { i.measure.name => i.qty }
+          ingredients_hash[i.food.name] =  { i.measure.name => i.qty.to_f }
         end
       end
     end
