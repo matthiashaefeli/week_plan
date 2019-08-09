@@ -33,8 +33,8 @@
           </div>
           <div>
             <%= link_to '#', onclick: "like(event, #{m.id}, $(this))" do %>
-              <i class="far fa-heart icons" <% if !m.like.nil? %> style="display:none;" <% end %>></i>
-              <i class="fas fa-heart icons" <% if m.like.nil? %> style="display:none;" <% end %>></i>
+              <i class="far fa-heart icons" <% if like(m.id) %> style="display:none;" <% end %>></i>
+              <i class="fas fa-heart icons" <% if !like(m.id) %> style="display:none;" <% end %>></i>
             <% end %>
           </div>
         </div>
