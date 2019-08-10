@@ -47,6 +47,8 @@ function delete_ingredient(event, id, link) {
 // add more ingredients form
 function more_ingredients(event, button) {
   event.preventDefault();
+  $('.ingredients_food').show();
+  $('.ingredients_measure').show();
   let tr = button.parents('tr');
   let clone = tr.clone();
   tr.find('#foodSearch').remove();

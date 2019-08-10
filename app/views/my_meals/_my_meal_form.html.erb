@@ -87,17 +87,19 @@
 <% end %>
 <script>
   $('#my_meal_title').focus();
-  $('#foodSearch').on('keyup', function() {
+  $('.create_table').on('keyup', '#foodSearch', function() {
     let val = $(this).val().toLowerCase();
     $('.ingredients_food').filter(function() {
       $(this).toggle($(this).text().toLowerCase().indexOf(val) > -1)
     })
   });
 
-  $('#measureSearch').on('keyup', function() {
+  $('.create_table').on('keyup', '#measureSearch' function() {
     let val = $(this).val().toLowerCase();
     $('.ingredients_measure').filter(function() {
       $(this).toggle($(this).text().toLowerCase().indexOf(val) > -1)
     })
   });
 </script>
+
+create_table
