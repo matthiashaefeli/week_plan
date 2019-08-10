@@ -94,7 +94,7 @@
     })
   });
 
-  $('.create_table').on('keyup', '#measureSearch' function() {
+  $('.create_table').on('keyup', '#measureSearch', function() {
     let val = $(this).val().toLowerCase();
     $('.ingredients_measure').filter(function() {
       $(this).toggle($(this).text().toLowerCase().indexOf(val) > -1)
