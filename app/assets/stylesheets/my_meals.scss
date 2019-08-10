@@ -43,6 +43,8 @@
 
 .my_meals {
   width: 80%;
+  height: 72vh;
+  overflow-y: scroll;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
