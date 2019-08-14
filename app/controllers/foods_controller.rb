@@ -5,12 +5,17 @@ class FoodsController < ApplicationController
 
   def new
     @food = Food.new
+    render layout: false
   end
 
   def create
-    @food = Food.create(name: params[:food][:name].gsub(' ', '_'))
-    if @food.save
-      redirect_to foods_path
+    @food = Food.create(name: params[:name].gsub(' ', '_'))
+    respond_to do |format|
+      if @food.save
+        format.json { render json: { notice: 'saved' } }
+      else
+        format.json { render json: { notice: @food.errors.full_messages } }
+      end
     end
   end
 end

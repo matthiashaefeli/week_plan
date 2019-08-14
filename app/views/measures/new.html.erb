@@ -4,25 +4,7 @@
   $('#measureCreate').focus();
   $('#measureCreate').on('keyup', function(event) {
     if (event.keyCode == 13) {
-      let input = $(this);
-      input.siblings('p').remove();
-      let name = input.val();
-      let p = $('<p></p>');
-      $.ajax({
-        url: '/measures',
-        method: 'post',
-        data: { name },
-        success: function(response) {
-          if (response.notice == 'saved') {
-            p.addClass('measure_search').text(name);
-            $('.mf_container').prepend(p);
-            input.val('').focus();
-          } else {
-            p.text(response.notice)
-            input.parent().append(p)
-          }
-        }
-      })
+      add_input($(this), '/measures', 'measure_search')
     }
-  })
+  });
 </script>

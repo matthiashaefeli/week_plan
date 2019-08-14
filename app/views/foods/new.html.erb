@@ -1,12 +1,10 @@
-<%= form_for @food do |form| %>
-  <table class="create_table">
-    <tr>
-      <td><%= form.label :name %></td>
-      <td><%= form.text_field :name %></td>
-      <td><%= form.submit %></td>
-    </tr>
-  </table>
-<% end %>
+<div>
+<input id="foodCreate" type="text" placeholder="Name..."></div>
 <script>
-  $('#food_name').focus();
+  $('#foodCreate').focus();
+  $('#foodCreate').on('keyup', function(event) {
+    if (event.keyCode == 13) {
+      add_input($(this), '/foods', 'food_search')
+    }
+  });
 </script>

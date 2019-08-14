@@ -23,4 +23,38 @@
 
 function clear_meals() {
   $('.category, #meals').toggle();
-}
+};
+
+function add_entry_form(event, link, entry_form, url) {
+  event.preventDefault();
+  let parent = link.parent();
+  entry_form.remove();
+  $.ajax({
+    url: url,
+    method: 'get',
+    success: function(response) {
+      $(response).insertAfter(parent);
+    }
+  })
+};
+
+function add_input(input, url, class_name) {
+  input.siblings('p').remove();
+  let name = input.val();
+  let p = $('<p></p>');
+  $.ajax({
+    url: url,
+    method: 'post',
+    data: { name },
+    success: function(response) {
+      if (response.notice == 'saved') {
+        p.addClass(class_name).text(name);
+        $('.mf_container').prepend(p);
+        input.val('').focus();
+      } else {
+        p.text(response.notice)
+        input.parent().append(p)
+      }
+    }
+  })
+};
