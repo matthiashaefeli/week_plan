@@ -1,12 +1,28 @@
-<%= form_for @measure do |form| %>
-  <table class="create_table">
-    <tr>
-      <td><%= form.label :name %></td>
-      <td><%= form.text_field :name %></td>
-      <td><%= form.submit %></td>
-    </tr>
-  </table>
-<% end %>
+<div>
+<input id="measureCreate" type="text" placeholder="Name..."></div>
 <script>
-  $('#measure_name').focus();
+  $('#measureCreate').focus();
+  $('#measureCreate').on('keyup', function(event) {
+    if (event.keyCode == 13) {
+      let input = $(this);
+      input.siblings('p').remove();
+      let name = input.val();
+      let p = $('<p></p>');
+      $.ajax({
+        url: '/measures',
+        method: 'post',
+        data: { name },
+        success: function(response) {
+          if (response.notice == 'saved') {
+            p.addClass('measure_search').text(name);
+            $('.mf_container').prepend(p);
+            input.val('').focus();
+          } else {
+            p.text(response.notice)
+            input.parent().append(p)
+          }
+        }
+      })
+    }
+  })
 </script>

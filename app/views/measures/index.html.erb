@@ -1,5 +1,5 @@
 <div class="mf_home">
-  <div><%= link_to 'Add New Measure', new_measure_path %></div>
+  <div><%= link_to 'Add New Measure', new_measure_path, onclick: "create_measure(event, $(this))" %></div>
   <div><input id="measureSearch" type="text" placeholder="Search..."></div>
   <div class="mf_container">
     <% @measures.each do |m| %>
@@ -8,6 +8,19 @@
   </div>
 </div>
 <script>
+  function create_measure(event, link) {
+    event.preventDefault();
+    let parent = link.parent();
+    $('#measureCreate').remove();
+    $.ajax({
+      url: '/measures/new',
+      method: 'get',
+      success: function(response) {
+        $(response).insertAfter(parent);
+      }
+    })
+  }
+
   $('#measureSearch').focus();
   $('#measureSearch').on('keyup', function() {
     let val = $(this).val().toLowerCase();
