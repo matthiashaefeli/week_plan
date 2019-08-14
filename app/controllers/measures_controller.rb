@@ -5,12 +5,17 @@ class MeasuresController < ApplicationController
 
   def new
     @measure = Measure.new
+    render layout: false
   end
 
   def create
-    @measure = Measure.create(name: params[:measure][:name].gsub(' ', '_'))
-    if @measure.save
-      redirect_to measures_path
+    @measure = Measure.create(name: params[:name].gsub(' ', '_'))
+    respond_to do |format|
+      if @measure.save
+        format.json { render json: { notice: 'saved' } }
+      else
+        format.json { render json: { notice: @measure.errors.full_messages } }
+      end
     end
   end
 end
