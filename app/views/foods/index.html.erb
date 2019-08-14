@@ -1,5 +1,5 @@
 <div class="mf_home">
-  <div><%= link_to 'Add New Ingredient', new_food_path %></div>
+  <div><%= link_to 'Add New Ingredient', new_food_path, onclick: "create_food(event, $(this))" %></div>
   <div><input id="foodSearch" type="text" placeholder="Search..."></div>
   <div class="mf_container">
     <% @foods.each do |f| %>
@@ -8,6 +8,19 @@
   </div>
 </div>
 <script>
+  function create_food(event, link) {
+    event.preventDefault();
+    let parent = link.parent();
+    $('#foodCreate').remove();
+    $.ajax({
+      url: '/foods/new',
+      method: 'get',
+      success: function(response) {
+        $(response).insertAfter(parent);
+      }
+    })
+  }
+
   $('#foodSearch').focus();
   $('#foodSearch').on('keyup', function() {
     let val = $(this).val().toLowerCase();
