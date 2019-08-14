@@ -60,4 +60,5 @@ function more_ingredients(event, button) {
   clone.find('#measureSearch').val('');
   clone.find('#my_meal_ingredients').val('');
   clone.insertBefore(tr);
+  $('#foodSearch').focus();
 }
